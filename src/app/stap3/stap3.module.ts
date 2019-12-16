@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'
 
-import { HomePage } from './home.page';
+import { Stap3Page } from './stap3.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: Stap3Page
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [Stap3Page]
 })
-export class HomePageModule {}
+export class Stap3PageModule {}
