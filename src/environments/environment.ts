@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyDYGe1TTbhScJ8ImNK8S3DpGHMxTh8BGqA",
+    authDomain: "recipely-inc.firebaseapp.com",
+    databaseURL: "https://recipely-inc.firebaseio.com",
+    projectId: "recipely-inc",
+    storageBucket: "recipely-inc.appspot.com",
+    messagingSenderId: "208088166474",
+    appId: "1:208088166474:web:044f8bc6f46cd6830e76b3",
+    measurementId: "G-R39TQQ1EJ2"
+  }
 };
 
 /*
