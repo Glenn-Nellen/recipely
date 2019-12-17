@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/firestore';
+
 @Component({
   selector: 'app-meatrecipes',
   templateUrl: './meatrecipes.page.html',
   styleUrls: ['./meatrecipes.page.scss'],
 })
 export class MeatrecipesPage implements OnInit {
-
   public recipeList: any[];
   public loadedRecipeList: any[];
   constructor(private firestore: AngularFirestore) {}
@@ -19,6 +19,9 @@ export class MeatrecipesPage implements OnInit {
     });
   }
 
+  getRecipe() {
+
+  }
 
   initializeItems(): void {
     this.recipeList = this.loadedRecipeList;
@@ -36,7 +39,7 @@ export class MeatrecipesPage implements OnInit {
     if (!searchTerm) {
       return;
     }
-  
+    
     this.recipeList = this.recipeList.filter(recipe => {
       if (recipe.ingredient && searchTerm) {
         if (recipe.ingredient.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
