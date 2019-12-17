@@ -1,19 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tab1</ion-title>
+    <ion-title>Categorieën</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <img src="https://blog.goodsam.com/wp-content/uploads/2019/10/Image-1_LO-400x190.jpg"/>
+  <ion-card tappable (click)="toMeatRecipes()" >
+    <img src="https://i.pinimg.com/474x/22/98/74/2298741305b9b27b3e605f69b12445ec.jpg"/>
   </ion-card>
 
-  <ion-card>
+  <ion-card tappable (click)="toFishRecipes()" >
     <img src="http://foodlover360.com/wp-content/uploads/2012/08/loire-400x190.png"/>
   </ion-card>
 
-  <ion-card>
-    <img src="https://blog.goodsam.com/wp-content/uploads/2019/10/Image-1_LO-400x190.jpg"/>
+  <ion-card tappable (click)="toVeganRecipes()" >
+    <img src="https://dtphx.org/wp-content/uploads/2015/07/carrotsaladrectangle-400x180.jpg"/>
   </ion-card>
 </ion-content>

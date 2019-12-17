@@ -17,6 +17,22 @@ const routes: Routes = [
     path: 'stap4',
     loadChildren: () => import('./stap4/stap4.module').then( m => m.Stap4PageModule)
   },
+  {
+    path: 'meatrecipes',
+    loadChildren: () => import('./meatrecipes/meatrecipes.module').then( m => m.MeatrecipesPageModule)
+  },
+  {
+    path: 'fishrecipes',
+    loadChildren: () => import('./fishrecipes/fishrecipes.module').then( m => m.FishrecipesPageModule)
+  },
+  {
+    path: 'veganrecipes',
+    loadChildren: () => import('./veganrecipes/veganrecipes.module').then( m => m.VeganrecipesPageModule)
+  },
+  {
+    path: 'veganrecipes',
+    loadChildren: () => import('./veganrecipes/veganrecipes.module').then( m => m.VeganrecipesPageModule)
+  },
   //{ path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
   //{ path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
 ];
