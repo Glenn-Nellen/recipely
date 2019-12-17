@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Stap 1
+      Recept toevoegen
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,8 +25,21 @@
           <div class="ion-text-center">
               <h4>Selecteer de ingrediënten die nodig zijn voor het recept</h4>
           </div>
-
-          <ion-searchbar color="primary"></ion-searchbar>
+          <ion-item>
+            <ion-label>ingrediënten</ion-label>
+            <ion-select multiple="true" cancelText="Cancel" okText="Select">
+              <ion-select-option value="bacon">Bacon</ion-select-option>
+              <ion-select-option value="olives">Black Olives</ion-select-option>
+              <ion-select-option value="xcheese">Extra Cheese</ion-select-option>
+              <ion-select-option value="peppers">Green Peppers</ion-select-option>
+              <ion-select-option value="mushrooms">Mushrooms</ion-select-option>
+              <ion-select-option value="onions">Onions</ion-select-option>
+              <ion-select-option value="pepperoni">Pepperoni</ion-select-option>
+              <ion-select-option value="pineapple">Pineapple</ion-select-option>
+              <ion-select-option value="sausage">Sausage</ion-select-option>
+              <ion-select-option value="Spinach">Spinach</ion-select-option>
+            </ion-select>
+          </ion-item>
 
           <div class="ion-padding">
             <ion-button (click)= "toSecondPage()"expand="block" type="submit" class="ion-no-margin">Ga naar stap 2</ion-button>
