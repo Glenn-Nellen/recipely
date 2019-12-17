@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
+  firebase: {
     apiKey: "AIzaSyDYGe1TTbhScJ8ImNK8S3DpGHMxTh8BGqA",
     authDomain: "recipely-inc.firebaseapp.com",
     databaseURL: "https://recipely-inc.firebaseio.com",

@@ -10,12 +10,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-  AngularFireModule,
+  AngularFireModule.initializeApp(environment.firebase, 'recipely-inc'),
   AngularFirestoreModule],
   providers: [
     StatusBar,
