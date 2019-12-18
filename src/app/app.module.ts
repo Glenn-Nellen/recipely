@@ -7,6 +7,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +19,9 @@ import { environment } from 'src/environments/environment';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(environment.firebase, 'recipely-inc'),
-  AngularFirestoreModule],
+  AngularFirestoreModule,
+  FormsModule,
+  ReactiveFormsModule],
   providers: [
     StatusBar,
     SplashScreen,

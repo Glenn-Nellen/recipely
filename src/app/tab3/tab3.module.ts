@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+import { FormsModule } from '@angular/forms'
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
 import { Tab3Page } from './tab3.page';
@@ -18,7 +18,8 @@ import { Tab3Page } from './tab3.page';
         path: '',
         component: Tab3Page
       }
-    ])
+    ]),
+    FormsModule
   ],
   declarations: [Tab3Page]
 })
