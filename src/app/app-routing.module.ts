@@ -33,6 +33,14 @@ const routes: Routes = [
     path: 'veganrecipes',
     loadChildren: () => import('./veganrecipes/veganrecipes.module').then( m => m.VeganrecipesPageModule)
   },
+  {
+    path: 'favorieten',
+    loadChildren: () => import('./favorieten/favorieten.module').then( m => m.FavorietenPageModule)
+  },
+  {
+    path: 'mijnrecepten',
+    loadChildren: () => import('./mijnrecepten/mijnrecepten.module').then( m => m.MijnreceptenPageModule)
+  },
   //{ path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
   //{ path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
 ];
