@@ -5,11 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Tab3Page } from './tab3.page';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
