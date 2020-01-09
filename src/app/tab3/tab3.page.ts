@@ -35,8 +35,15 @@ export class Tab3Page{
   }
 
   uploadRecipe(){
-    console.log(this.recipeName, this.ingredients, this.mealTime, this.people, this.prepTime, this.steps, this.videoLink);
-    this.db.collection('recipe').add({category: this.category, name: this.recipeName, ingredient: this.ingredients, mealTime: this.mealTime, people: this.people, preptime: this.prepTime, steps: this.steps, video: this.videoLink, id: this.id})
+    this.db.collection('recipe').add({category: this.category, 
+      name: this.recipeName, 
+      ingredient: this.ingredients, 
+      mealTime: this.mealTime, 
+      people: this.people, 
+      preptime: this.prepTime, 
+      steps: this.steps, 
+      video: this.videoLink, 
+      id: this.id})
   }
 
   addControl(){

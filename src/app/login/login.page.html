@@ -4,8 +4,11 @@
   <section>
     <div class="ion-padding">
       <ion-button color= "light" (click)="toRegisterPage()" expand="block" type="submit" class="ion-no-margin">Meld je aan!</ion-button>
+       <p class="go-to-login" text-center>Meld je aan met een google account</p>
+      <ion-button expand="full" color="danger" (click)="goLoginPage()">Meld je aan</ion-button>
       <p class="go-to-login">Al een account? <a (click)="toLoginPage()">Log in</a></p> 
     </div>
+    
   </section>
 
 </ion-content>

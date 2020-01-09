@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, public modalController: ModalController) {}
+  constructor(public afAuth: AngularFireAuth, private router: Router, public modalController: ModalController) {}
   toRegisterPage() {
     this.router.navigate(["register"]);
   }
@@ -20,5 +22,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
+  goLoginPage() {
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
 }

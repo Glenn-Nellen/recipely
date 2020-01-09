@@ -19,10 +19,6 @@ export class MeatrecipesPage implements OnInit {
     });
   }
 
-  getRecipe() {
-
-  }
-
   initializeItems(): void {
     this.recipeList = this.loadedRecipeList;
   }
