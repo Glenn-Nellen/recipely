@@ -45,8 +45,13 @@ export class AppComponent {
         icon  : "md-list-box"
       },
       {
+        title : "Mijn profiel",
+        url   : "/mijnprofiel",
+        icon  : "md-person"
+      },
+      {
         title : "Uitloggen",
-        url   : "/contacts",
+        url   : "/uitloggeny",
         icon  : "md-log-out"
       },
     ]

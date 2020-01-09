@@ -27,7 +27,7 @@ export class Tab3Page{
   steps='';
   videoLink='';
   id = uuid.v4();
-  constructor(private fileChooser: FileChooser, private file: File, private router: Router, formBuilder: FormBuilder, private db: AngularFirestore){
+  constructor(private router: Router, formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
       user: ['', Validators.required]

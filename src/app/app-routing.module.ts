@@ -62,6 +62,14 @@ const routes: Routes = [
     path: 'newpassword',
     loadChildren: () => import('./newpassword/newpassword.module').then( m => m.NewpasswordPageModule)
   },
+  {
+    path: 'mijnprofiel',
+    loadChildren: () => import('./mijnprofiel/mijnprofiel.module').then( m => m.MijnprofielPageModule)
+  },
+  {
+    path: 'uitloggen',
+    loadChildren: () => import('./uitloggen/uitloggen.module').then( m => m.UitloggenPageModule)
+  },
   //{ path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
   //{ path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
 ];
