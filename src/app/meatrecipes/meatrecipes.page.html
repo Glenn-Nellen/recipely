@@ -9,8 +9,8 @@
 
 <ion-content>
   <ion-searchbar showcancelbutton="" (keyup)="filterList($event)"></ion-searchbar>
-  <ion-card tappable (click)="toRecipe({item.id})" *ngFor="let item of recipeList">
-    <img src="{{ item.image }}"/>
+  <ion-card tappable *ngFor="let item of recipeList">
+    <img src="../../assets/images/{{ item.image }}.jpg"/>
     <ion-card-header>
       <ion-card-subtitle>Bevat {{ item.ingredient }}</ion-card-subtitle>
       <ion-card-title>{{item.name}}</ion-card-title>
