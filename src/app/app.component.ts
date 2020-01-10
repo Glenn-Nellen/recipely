@@ -51,7 +51,7 @@ export class AppComponent {
       },
       {
         title : "Uitloggen",
-        url   : "/login",
+        url   : "/uitloggen",
         icon  : "md-log-out"
       },
     ]
