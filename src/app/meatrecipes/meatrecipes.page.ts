@@ -24,7 +24,8 @@ export class MeatrecipesPage implements OnInit {
     this.recipeList = this.loadedRecipeList;
   }
 
-  toRecipe() {
+  toRecipe(id) {
+    console.log(id)
     this.router.navigate(["recept"]);
   }
 
