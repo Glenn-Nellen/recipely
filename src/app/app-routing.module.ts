@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'uitloggen',
     loadChildren: () => import('./uitloggen/uitloggen.module').then( m => m.UitloggenPageModule)
   },
+  {
+    path: 'recept',
+    loadChildren: () => import('./recept/recept.module').then( m => m.ReceptPageModule)
+  },
   //{ path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
   //{ path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
 ];
