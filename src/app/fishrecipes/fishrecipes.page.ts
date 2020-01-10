@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fishrecipes',
@@ -9,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class FishrecipesPage implements OnInit {
   public recipeList: any[];
   public loadedRecipeList: any[];
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore, private router: Router) {}
 
   ngOnInit() {
     this.firestore.collection(`recipe`, ref => ref.where('category', '==', 'Vis')).valueChanges()
@@ -23,6 +24,11 @@ export class FishrecipesPage implements OnInit {
   initializeItems(): void {
     this.recipeList = this.loadedRecipeList;
   }
+
+  toRecipe() {
+    this.router.navigate(["recept"]);
+  }
+  
   values = '';
   filterList(event: any) {
     this.values += event.target.value + ' | ';
