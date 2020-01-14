@@ -30,8 +30,9 @@ export class MeatrecipesPage implements OnInit {
   }
 
   values = '';
+  
   filterList(event: any) {
-    this.values += event.target.value + ' | ';
+    this.values += event.target.value;
     
     console.log(this.values)
     this.initializeItems();
@@ -44,8 +45,8 @@ export class MeatrecipesPage implements OnInit {
     }
     
     this.recipeList = this.recipeList.filter(recipe => {
-      if (recipe.ingredient && searchTerm) {
-        if (recipe.ingredient.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+      if (recipe.ingredients && searchTerm) {
+        if (recipe[1].ingredients.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
           return true;
         }
         return false;

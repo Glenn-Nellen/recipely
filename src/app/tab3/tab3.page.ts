@@ -52,7 +52,9 @@ export class Tab3Page{
           text: 'Bevestig recept',
           handler: () =>  { 
             console.log('Bevestig recept');
-           this.uploadRecipe();
+            this.clearInputs();
+            this.uploadRecipe();
+
           }
         }
       ]
@@ -61,6 +63,16 @@ export class Tab3Page{
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result);
+  }
+
+  clearInputs(){
+    this.recipeName = '';
+  this.category = '';
+  this.mealTime = '';
+  this.people='';
+  this.prepTime='';
+  this.steps='';
+  this.videoLink='';
   }
 
   uploadRecipe(){
