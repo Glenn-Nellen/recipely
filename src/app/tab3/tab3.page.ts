@@ -52,8 +52,8 @@ export class Tab3Page{
           text: 'Bevestig recept',
           handler: () =>  { 
             console.log('Bevestig recept');
-            this.clearInputs();
             this.uploadRecipe();
+            this.clearInputs();
 
           }
         }
