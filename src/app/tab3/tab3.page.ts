@@ -6,6 +6,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as uuid from 'uuid'
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { AlertController } from '@ionic/angular';
+
 //import { firestore } from 'firebase';
 
 @Component({
@@ -27,11 +29,38 @@ export class Tab3Page{
   steps='';
   videoLink='';
   id = uuid.v4();
-  constructor(private router: Router, formBuilder: FormBuilder, private db: AngularFirestore){
+  constructor(public alertController: AlertController, private router: Router, formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
       user: ['', Validators.required]
     });
+  }
+
+  async uploadAlert() {
+    const alert = await this.alertController.create({
+      header: 'Recept toevoegen',
+      message: 'Controleer eerst of alle velden correct zijn ingevuld',
+      buttons: [
+        {
+          text: 'Annuleer',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: Annuleer');
+          }
+        }, {
+          text: 'Bevestig recept',
+          handler: () =>  { 
+            console.log('Bevestig recept');
+           this.uploadRecipe();
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
   }
 
   uploadRecipe(){
