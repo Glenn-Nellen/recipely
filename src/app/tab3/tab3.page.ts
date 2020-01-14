@@ -54,6 +54,7 @@ export class Tab3Page{
             console.log('Bevestig recept');
             this.uploadRecipe();
             this.clearInputs();
+            this.uploadDone();
 
           }
         }
@@ -65,8 +66,21 @@ export class Tab3Page{
     console.log(result);
   }
 
+  async uploadDone() {
+    const alert = await this.alertController.create({
+      header: 'Recept',
+      message: 'Recept is aangemaakt',
+      buttons: ['OK'],
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
+  }
+
   clearInputs(){
-    this.recipeName = '';
+  this.recipeName = '';
+  this.ingredients = '';
   this.category = '';
   this.mealTime = '';
   this.people='';
