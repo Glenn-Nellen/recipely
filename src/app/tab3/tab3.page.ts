@@ -104,7 +104,7 @@ export class Tab3Page{
     let result = await alert.onDidDismiss();
     console.log(result);
   }
-
+  // Verwijderd de inputs in het forumulier
   clearInputs(){
   this.recipeName = '';
   this.ingredients = '';
@@ -116,6 +116,7 @@ export class Tab3Page{
   this.videoLink='';
   }
 
+  //Stuurt alle ingevulde velden in het formulier door naar Firebase
   uploadRecipe(){
     this.db.collection('recipe').add({category: this.category, 
       name: this.recipeName, 
