@@ -3,18 +3,19 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-veganrecipes',
-  templateUrl: './veganrecipes.page.html',
-  styleUrls: ['./veganrecipes.page.scss'],
+  selector: 'app-categories',
+  templateUrl: './categories.page.html',
+  styleUrls: ['./categories.page.scss'],
 })
-export class VeganrecipesPage implements OnInit {
-
+export class CategoriesPage implements OnInit {
   public recipeList: any[];
   public loadedRecipeList: any[];
+  category: ''
   constructor(private firestore: AngularFirestore, private router: Router) {}
 
   ngOnInit() {
-    this.firestore.collection(`recipe`, ref => ref.where('category', '==', 'Vegetarisch')).valueChanges()
+    this.category = this.router.getCurrentNavigation().extras.state.category
+    this.firestore.collection(`recipe`, ref => ref.where('category', '==', this.category)).valueChanges()
     .subscribe(recipeList => { 
       this.recipeList = recipeList;
       this.loadedRecipeList = recipeList;
@@ -26,12 +27,11 @@ export class VeganrecipesPage implements OnInit {
     this.recipeList = this.loadedRecipeList;
   }
 
-  
   toRecipe(id) {
     // console.log(id)
     this.router.navigate(["recept"], { state: {receptid: id} } );
   }
-
+  
   values = '';
   filterList(event: any) {
     this.values += event.target.value + ' | ';
@@ -48,7 +48,7 @@ export class VeganrecipesPage implements OnInit {
   
     this.recipeList = this.recipeList.filter(recipe => {
       if (recipe.ingredient && searchTerm) {
-        if (recipe.ingredient.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+        if (recipe.ingredient[0].toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
           return true;
         }
         return false;
@@ -56,4 +56,5 @@ export class VeganrecipesPage implements OnInit {
     });
     
   }
+
 }

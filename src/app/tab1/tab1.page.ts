@@ -9,15 +9,14 @@ import { Router } from '@angular/router';
 export class Tab1Page{
 
   constructor(private router: Router){}
-  toMeatRecipes() {
-    this.router.navigate(["meatrecipes"]);
+  toMeatRecipes(category) {
+    this.router.navigate(["categories"], { state: {category: category} } );
   }
 
-  toFishRecipes() {
-    this.router.navigate(["fishrecipes"]);
+  toFishRecipes(category) {
+    this.router.navigate(["categories"], { state: {category: category} } );    
   }
 
-  toVeganRecipes() {
-    this.router.navigate(["veganrecipes"]);
-  }
+  toVeganRecipes(category) {
+    this.router.navigate(["categories"], { state: {category: category} } );  }
 }
