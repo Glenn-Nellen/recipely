@@ -9,16 +9,18 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ReceptPage implements OnInit {
 receptid = ''
+recipeName = ''
 public recipe: any[];
   constructor(private firestore: AngularFirestore, private router: Router) {
     this.receptid = this.router.getCurrentNavigation().extras.state.receptid // should log out 'bar'
   }
 
   ngOnInit() {
+    this.receptid = this.router.getCurrentNavigation().extras.state.receptid
     this.firestore.collection(`recipe`, ref => ref.where('id', '==', this.receptid)).valueChanges()
     .subscribe(recipeList => { 
      this.recipe = recipeList;
     });
   }
-
+  
 }
