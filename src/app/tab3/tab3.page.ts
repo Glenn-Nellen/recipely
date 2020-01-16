@@ -19,6 +19,8 @@ export class Tab3Page{
 
   public myForm: FormGroup;
   private stepCount: number = 1;
+  validations_form: FormGroup;
+  errorMessage: string = '';
 
   recipeName = '';
   category = '';
@@ -29,12 +31,37 @@ export class Tab3Page{
   steps='';
   videoLink='';
   id = uuid.v4();
-  constructor(public alertController: AlertController, private router: Router, formBuilder: FormBuilder, private db: AngularFirestore){
+  constructor(public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
       user: ['', Validators.required]
     });
   }
+
+  ngOnInit() {
+ 
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
+  }
+
+  validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email is verplicht.' },
+      { type: 'pattern', message: 'Voer een geldig emailadres in.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Wachtwoord is verplicht' },
+      { type: 'minlength', message: 'Wachtwoord moet minimaal uit 5 karakters bestaan.' }
+    ]
+  };
 
   async uploadAlert() {
     const alert = await this.alertController.create({
