@@ -11,8 +11,8 @@ export class ReceptPage implements OnInit {
 receptid = ''
 recipeName = ''
 public recipe: any[];
+
   constructor(private firestore: AngularFirestore, private router: Router) {
-    this.receptid = this.router.getCurrentNavigation().extras.state.receptid // should log out 'bar'
   }
 
   ngOnInit() {

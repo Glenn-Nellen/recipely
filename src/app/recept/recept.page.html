@@ -8,6 +8,12 @@
 </ion-header>
 
 <ion-content>
-  <p>{{this.receptid}}</p>
-
-</ion-content>
+   <div *ngFor="let item of recipe">
+     <h3>{{item.name}}</h3>
+      <h4>Ingrediënten:</h4>
+      <p>{{item.ingredient}}</p>
+      <p>Personen: {{item.people}}</p>
+      <p>Bereidingstijd: {{item.preptime}} Minuten</p>
+      <p>Stappen: {{item.steps}}</p>
+   </div>
+  </ion-content>
