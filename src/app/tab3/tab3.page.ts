@@ -8,6 +8,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AlertController } from '@ionic/angular';
 
+
 //import { firestore } from 'firebase';
 
 @Component({
@@ -19,6 +20,7 @@ export class Tab3Page{
 
   public myForm: FormGroup;
   private stepCount: number = 1;
+
   validations_form: FormGroup;
   errorMessage: string = '';
 
@@ -37,32 +39,40 @@ export class Tab3Page{
       user: ['', Validators.required]
     });
   }
-
   ngOnInit() {
  
     this.validations_form = this.formBuilder.group({
-      email: new FormControl('', Validators.compose([
+      naam: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.pattern('^.[a-zA-Z.]+$')
       ])),
-      password: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required
+      personen: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[1-50.]')
+      ])),
+      minuten: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[1-9.]')
       ])),
     });
   }
-
+ 
+ 
   validation_messages = {
-    'email': [
-      { type: 'required', message: 'Email is verplicht.' },
-      { type: 'pattern', message: 'Voer een geldig emailadres in.' }
+    'naam': [
+      { type: 'required', message: 'Naam is verplicht.' },
+      { type: 'pattern', message: 'Voer een geldige naam in.' }
     ],
-    'password': [
-      { type: 'required', message: 'Wachtwoord is verplicht' },
-      { type: 'minlength', message: 'Wachtwoord moet minimaal uit 5 karakters bestaan.' }
+    'personen': [
+      { type: 'required', message: 'Aantal personen is verplicht' },
+      { type: 'pattern', message: 'U kunt voor maximaal 50 personen kiezen.' }
+    ],
+    'minuten': [
+      { type: 'required', message: 'Aantal minuten is verplicht' },
+      { type: 'pattern', message: 'U kunt voor maximaal 30 minuten kiezen' }
     ]
   };
-
+ 
   async uploadAlert() {
     const alert = await this.alertController.create({
       header: 'Recept toevoegen',
