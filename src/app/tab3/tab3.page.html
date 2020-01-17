@@ -140,13 +140,21 @@
       <h4>Voeg een foto toe</h4>
     </div>
 
-    <button ion-button block (click)="Choose()">Upload een foto</button>
+    <div class="uploadbtn">
+      <label>
+        <input (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*">
+      </label>
+    </div>
 
     <div class="ion-text-center">
       <h4>Voeg een video toe</h4>
     </div>
 
-
+    <ion-item>
+      <ion-input formControlName="naam" [(ngModel)]="recipeName" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+        inputmode="text" placeholder="Voeg een link toe" required="true"></ion-input>
+      <ion-icon name="md-link" slot="end"></ion-icon>
+    </ion-item>
 
 
     <ion-button (click)="uploadAlert()" expand="block" class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Voeg het recept toe</ion-button>

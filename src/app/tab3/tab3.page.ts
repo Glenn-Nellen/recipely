@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';  
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { FirebaseFirestore } from '@angular/fire'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import * as uuid from 'uuid'
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
-import { File } from '@ionic-native/file/ngx';
 import { AlertController } from '@ionic/angular';
 
 
 //import { firestore } from 'firebase';
+
+export interface Image {
+  id: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-tab3',
@@ -17,6 +20,13 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./tab3.page.scss'],
 })
 export class Tab3Page{
+
+  url: any;
+  newImage: Image = {
+    id: this.afs.createId(), image: ''
+  }
+
+  loading: boolean = false;;
 
   public myForm: FormGroup;
   private stepCount: number = 1;
@@ -33,7 +43,7 @@ export class Tab3Page{
   steps='';
   videoLink='';
   id = uuid.v4();
-  constructor(public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
+  constructor(private afs: AngularFirestore, private storage: AngularFireStorage, public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
       user: ['', Validators.required]
@@ -56,7 +66,48 @@ export class Tab3Page{
       ])),
     });
   }
- 
+
+    uploadImage(event) {
+    this.loading = true;
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+     
+      reader.readAsDataURL(event.target.files[0]);
+      // For Preview Of Image
+      reader.onload = (e:any) => { // called once readAsDataURL is completed
+        this.url = e.target.result;
+      
+        // For Uploading Image To Firebase
+        const fileraw = event.target.files[0];
+        console.log(fileraw)
+        const filePath = '/Image/' + this.newImage.id + '/' + 'Image' + (Math.floor(1000 + Math.random() * 9000) + 1);
+        const result = this.SaveImageRef(filePath, fileraw);
+        const ref = result.ref;
+        result.task.then(a => {
+          ref.getDownloadURL().subscribe(a => {
+            console.log(a);
+            
+            this.newImage.image = a;
+            this.loading = false;
+          });
+
+          this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
+        });
+      }, error => {
+        alert("Error");
+      }
+
+    }
+  }
+
+  SaveImageRef(filePath, file) {
+
+    return {
+      task: this.storage.upload(filePath, file)
+      , ref: this.storage.ref(filePath)
+    };
+  }
+
  
   validation_messages = {
     'naam': [
