@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { AuthenticateService } from './services/authentication.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage'
 import * as firebase from 'firebase';
 
 firebase.initializeApp(environment.firebase);
@@ -26,6 +27,7 @@ firebase.initializeApp(environment.firebase);
   AngularFireModule.initializeApp(environment.firebase, 'recipely-inc'),
   AngularFirestoreModule,
   AngularFireAuthModule,
+  AngularFireStorageModule,
   FormsModule,
   ReactiveFormsModule],
   providers: [
