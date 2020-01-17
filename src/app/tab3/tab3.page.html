@@ -21,7 +21,7 @@
     </div>
  
     <ion-item>
-      <ion-input formControlName="naam" [(ngModel)]="recipeName" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="naam" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voer een naam in" required="true"></ion-input>
       <ion-icon name="md-create" slot="end"></ion-icon>
     </ion-item>
@@ -38,7 +38,7 @@
     </div>
     <ion-item>
       <ion-label>ingrediënten</ion-label>
-      <ion-select multiple="true" cancelText="Cancel" okText="Select" [(ngModel)]="ingredients">
+      <ion-select multiple="true" cancelText="Cancel" okText="Select">
         <ion-select-option value="bacon">Bacon</ion-select-option>
         <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
         <ion-select-option value="Olijven">Olijven</ion-select-option>
@@ -58,7 +58,7 @@
 
     <ion-item>
       <ion-label>Categorie</ion-label>
-      <ion-select placeholder="Selecteer een categorie" [(ngModel)]="category">
+      <ion-select placeholder="Selecteer een categorie" >
         <ion-select-option value="Vlees">Vlees</ion-select-option>
         <ion-select-option value="Vis">Vis</ion-select-option>
         <ion-select-option value="Vegetarisch">Vegetarisch</ion-select-option>
@@ -76,7 +76,7 @@
 
     <ion-item>
       <ion-label>Wanneer</ion-label>
-      <ion-select multiple="true" cancelText="Cancel" okText="Select" [(ngModel)]="mealTime">
+      <ion-select multiple="true" cancelText="Cancel" okText="Select">
         <ion-select-option value="Ochtend">Ochtend</ion-select-option>
         <ion-select-option value="Middag">Middag</ion-select-option>
         <ion-select-option value="Avond">Avond</ion-select-option>
@@ -88,7 +88,7 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="personen" [(ngModel)]="people" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="personen" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voer aantal personen in" required="true"></ion-input>
       <ion-icon name="md-contacts" slot="end"></ion-icon>
     </ion-item>
@@ -105,7 +105,7 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="minuten" [(ngModel)]="steps" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="minuten" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voer een tijd in minuten in" required="true"></ion-input>
       <ion-icon name="md-contacts" slot="end"></ion-icon>
     </ion-item>
@@ -151,7 +151,7 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="naam" [(ngModel)]="recipeName" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="naam"  autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voeg een link toe" required="true"></ion-input>
       <ion-icon name="md-link" slot="end"></ion-icon>
     </ion-item>
