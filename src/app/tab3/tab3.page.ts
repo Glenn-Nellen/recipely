@@ -23,7 +23,8 @@ export class Tab3Page{
 
   url: any;
   newImage: Image = {
-    id: this.afs.createId(), image: ''
+    id: this.afs.createId(), 
+    image: ''
   }
 
   loading: boolean = false;;
@@ -33,6 +34,7 @@ export class Tab3Page{
 
   validations_form: FormGroup;
   errorMessage: string = '';
+  event: any;
 
   recipeName = '';
   category = '';
@@ -52,7 +54,7 @@ export class Tab3Page{
   ngOnInit() {
  
     this.validations_form = this.formBuilder.group({
-      naam: new FormControl('', Validators.compose([
+      recipeName: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^.[a-zA-Z.]+$')
       ])),
@@ -66,21 +68,22 @@ export class Tab3Page{
       ])),
     });
   }
-
-    uploadImage(event) {
+    saveEvent(event) {
+      this.event = event.target.files[0]
+    }
+    uploadImage() {
     this.loading = true;
-    if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
      
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(this.event);
       // For Preview Of Image
       reader.onload = (e:any) => { // called once readAsDataURL is completed
         this.url = e.target.result;
       
         // For Uploading Image To Firebase
-        const fileraw = event.target.files[0];
+        const fileraw = this.event;
         console.log(fileraw)
-        const filePath = '/Image/' + this.newImage.id + '/' + 'Image' + (Math.floor(1000 + Math.random() * 9000) + 1);
+        const filePath = '/Image/' + 'Image' + uuid.v4();
         const result = this.SaveImageRef(filePath, fileraw);
         const ref = result.ref;
         result.task.then(a => {
@@ -89,15 +92,27 @@ export class Tab3Page{
             
             this.newImage.image = a;
             this.loading = false;
+            this.db.collection('recipe').add({category: this.category, 
+              name: this.validations_form.get('recipeName').value, 
+              // ingredient: this.ingredients, 
+              mealTime: this.mealTime, 
+              people: this.people, 
+              preptime: this.prepTime, 
+              steps: this.steps, 
+              video: this.videoLink, 
+              id: this.id,
+              image: this.newImage.image})
+            // this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
+
           });
 
-          this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
+          
         });
       }, error => {
         alert("Error");
       }
 
-    }
+    
   }
 
   SaveImageRef(filePath, file) {
@@ -110,7 +125,7 @@ export class Tab3Page{
 
  
   validation_messages = {
-    'naam': [
+    'recipeName': [
       { type: 'required', message: 'Naam is verplicht.' },
       { type: 'pattern', message: 'Voer een geldige naam in.' }
     ],
@@ -124,7 +139,9 @@ export class Tab3Page{
     ]
   };
  
+  //Functie voor het uploaden van recept
   async uploadAlert() {
+    console.log(this.validations_form.get('recipeName').value);
     const alert = await this.alertController.create({
       header: 'Recept toevoegen',
       message: 'Controleer eerst of alle velden correct zijn ingevuld',
@@ -140,9 +157,10 @@ export class Tab3Page{
           text: 'Bevestig recept',
           handler: () =>  { 
             console.log('Bevestig recept');
-            this.uploadRecipe();
-            this.clearInputs();
-            this.uploadDone();
+            // this.uploadRecipe(); // Stuurt het recept naar Firebase
+            this.uploadImage();
+            this.clearInputs(); // Zorgt ervoor dat alle inputs leeg zijn
+            this.uploadDone();  // Zorgt ervoor dat je een notificatie krijgt als je een recept hebt aangemaakt.
 
           }
         }
@@ -181,7 +199,7 @@ export class Tab3Page{
   uploadRecipe(){
     this.db.collection('recipe').add({category: this.category, 
       name: this.recipeName, 
-      ingredient: this.ingredients, 
+      // ingredient: this.ingredients, 
       mealTime: this.mealTime, 
       people: this.people, 
       preptime: this.prepTime, 
