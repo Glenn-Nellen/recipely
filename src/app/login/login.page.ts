@@ -19,7 +19,9 @@ export class LoginPage implements OnInit {
   toLoginPage() {
     this.router.navigate(["inloggen"]);
   }
-
+  skipLogin() {
+    this.router.navigate(['/tabs/tab1'])
+  }
   ngOnInit() {
   }
   goLoginPage() {

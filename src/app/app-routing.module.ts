@@ -11,18 +11,6 @@ const routes: Routes = [
   
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
   {
-    path: 'stap2',
-    loadChildren: () => import('./stap2/stap2.module').then( m => m.Stap2PageModule)
-  },
-  {
-    path: 'stap3',
-    loadChildren: () => import('./stap3/stap3.module').then( m => m.Stap3PageModule)
-  },
-  {
-    path: 'stap4',
-    loadChildren: () => import('./stap4/stap4.module').then( m => m.Stap4PageModule)
-  },
-  {
     path: 'favorieten',
     loadChildren: () => import('./favorieten/favorieten.module').then( m => m.FavorietenPageModule)
   },
