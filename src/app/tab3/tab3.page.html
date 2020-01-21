@@ -38,7 +38,7 @@
     </div>
     <ion-item>
       <ion-label>ingrediënten</ion-label>
-      <ion-select multiple="true" cancelText="Cancel" okText="Select">
+      <ion-select formControlName="ingredients" multiple="true" cancelText="Cancel" okText="Select">
         <ion-select-option value="bacon">Bacon</ion-select-option>
         <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
         <ion-select-option value="Olijven">Olijven</ion-select-option>
@@ -58,7 +58,7 @@
 
     <ion-item>
       <ion-label>Categorie</ion-label>
-      <ion-select placeholder="Selecteer een categorie" >
+      <ion-select placeholder="Selecteer een categorie" formControlName="categorie">
         <ion-select-option value="Vlees">Vlees</ion-select-option>
         <ion-select-option value="Vis">Vis</ion-select-option>
         <ion-select-option value="Vegetarisch">Vegetarisch</ion-select-option>
@@ -76,7 +76,7 @@
 
     <ion-item>
       <ion-label>Wanneer</ion-label>
-      <ion-select multiple="true" cancelText="Cancel" okText="Select">
+      <ion-select formControlName="mealTime" multiple="true" cancelText="Cancel" okText="Select">
         <ion-select-option value="Ochtend">Ochtend</ion-select-option>
         <ion-select-option value="Middag">Middag</ion-select-option>
         <ion-select-option value="Avond">Avond</ion-select-option>
@@ -88,13 +88,13 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="personen" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="people" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voer aantal personen in" required="true"></ion-input>
       <ion-icon name="md-contacts" slot="end"></ion-icon>
     </ion-item>
     <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.personen">
-        <div class="error-message" *ngIf="validations_form.get('personen').hasError(validation.type) && (validations_form.get('personen').dirty || validations_form.get('personen').touched)">
+      <ng-container *ngFor="let validation of validation_messages.people">
+        <div class="error-message" *ngIf="validations_form.get('people').hasError(validation.type) && (validations_form.get('people').dirty || validations_form.get('people').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
@@ -105,13 +105,13 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="minuten" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="prepTime" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voer een tijd in minuten in" required="true"></ion-input>
       <ion-icon name="md-contacts" slot="end"></ion-icon>
     </ion-item>
     <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.minuten">
-        <div class="error-message" *ngIf="validations_form.get('minuten').hasError(validation.type) && (validations_form.get('minuten').dirty || validations_form.get('minuten').touched)">
+      <ng-container *ngFor="let validation of validation_messages.prepTime">
+        <div class="error-message" *ngIf="validations_form.get('prepTime').hasError(validation.type) && (validations_form.get('prepTime').dirty || validations_form.get('prepTime').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
@@ -120,17 +120,25 @@
      <div class="ion-text-center">
       <h1>Stap 3</h1>
     </div>
-
-    <ion-list lines="none">
-      <form class="form" [formGroup]="myForm">
-        <ion-item *ngFor="let control of myForm.controls | keyvalue">
-          <ion-input required type="text" [formControlName]="control.key" placeHolder="Voer hier je beschrijving in"></ion-input>
-          <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
-        </ion-item>
-      </form>
-    </ion-list>
-
-    <ion-button expand="full" color="light" (click)="addControl()">Voeg een stap toe</ion-button>
+    <form>
+    <ion-item class="container border mb-4 p-3" *ngFor="let step of steps; let i = index;">
+      <div class="row">
+        <div>
+          <h5>Stap {{i + 1}}</h5>
+        </div>
+        <div class="text-right">
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="step.step" name="step_{{i}}" placeholder="Voeg .. toe"/>
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeSteps(i)">Verwijder stap</button>
+      </div>
+    </ion-item>
+  </form>
+    
+    <div class="text-right">
+        <input type="submit" class="btn btn-success" (click)="addSteps()" value="Voeg stap toe"/>
+    </div>
 
     <div class="ion-text-center">
       <h1>Stap 4</h1>
@@ -151,7 +159,7 @@
     </div>
 
     <ion-item>
-      <ion-input formControlName="naam"  autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
+      <ion-input formControlName="video"  autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
         inputmode="text" placeholder="Voeg een link toe" required="true"></ion-input>
       <ion-icon name="md-link" slot="end"></ion-icon>
     </ion-item>
@@ -161,4 +169,9 @@
     <label class="error-message">{{errorMessage}}</label>
   </form>
 
+  
+  
 </ion-content>
+
+
+

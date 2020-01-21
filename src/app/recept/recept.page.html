@@ -12,8 +12,12 @@
      <h3>{{item.name}}</h3>
       <h4>Ingrediënten:</h4>
       <p>{{item.ingredient}}</p>
-      <p>Personen: {{item.people}}</p>
-      <p>Bereidingstijd: {{item.preptime}} Minuten</p>
-      <p>Stappen: {{item.steps}}</p>
+      <p> Personen: {{item.people}}</p>
+      <p> Bereidingstijd: {{item.preptime}} Minuten</p>
+
+      <div *ngFor="let step of toArray(item.steps); let i = index; ">
+        <p>Stap: {{i + 1}} {{step.step}}</p>
+        </div>
+
    </div>
   </ion-content>

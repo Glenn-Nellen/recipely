@@ -20,7 +20,11 @@ public recipe: any[];
     this.firestore.collection(`recipe`, ref => ref.where('id', '==', this.receptid)).valueChanges()
     .subscribe(recipeList => { 
      this.recipe = recipeList;
+     console.log(this.recipe)
     });
   }
-  
+  toArray(answers: object) {
+    return Object.keys(answers).map(key => answers[key])
+  }
 }
+

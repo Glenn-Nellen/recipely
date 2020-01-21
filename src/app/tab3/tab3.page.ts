@@ -20,7 +20,9 @@ export interface Image {
   styleUrls: ['./tab3.page.scss'],
 })
 export class Tab3Page{
-
+  public steps: any[] = [{
+    step: ''
+  }];
   url: any;
   newImage: Image = {
     id: this.afs.createId(), 
@@ -42,13 +44,12 @@ export class Tab3Page{
   mealTime = '';
   people='';
   prepTime='';
-  steps='';
   videoLink='';
   id = uuid.v4();
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage, public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
-      user: ['', Validators.required]
+      user: new FormControl('', Validators.required)
     });
   }
   ngOnInit() {
@@ -58,14 +59,20 @@ export class Tab3Page{
         Validators.required,
         Validators.pattern('^.[a-zA-Z.]+$')
       ])),
-      personen: new FormControl('', Validators.compose([
+      people: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('[1-50.]')
       ])),
-      minuten: new FormControl('', Validators.compose([
+      prepTime: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('[1-9.]')
       ])),
+      ingredients: new FormControl(),
+      categorie: new FormControl(),
+      mealTime: new FormControl(),
+      video: new FormControl(),
+      step: new FormControl(),
+
     });
   }
     saveEvent(event) {
@@ -92,14 +99,16 @@ export class Tab3Page{
             
             this.newImage.image = a;
             this.loading = false;
-            this.db.collection('recipe').add({category: this.category, 
+            
+            this.db.collection('recipe').add({
+              category: this.validations_form.get('categorie').value, 
               name: this.validations_form.get('naam').value, 
-              // ingredient: this.ingredients, 
-              mealTime: this.mealTime, 
-              people: this.people, 
-              preptime: this.prepTime, 
-              steps: this.steps, 
-              video: this.videoLink, 
+              ingredient: this.validations_form.get('ingredients').value, 
+              mealTime: this.validations_form.get('mealTime').value, 
+              people: this.validations_form.get('people').value, 
+              preptime: this.validations_form.get('prepTime').value,
+              steps:this.steps, 
+              video: this.validations_form.get('video').value, 
               id: this.id,
               image: this.newImage.image})
             // this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
@@ -191,7 +200,7 @@ export class Tab3Page{
   this.mealTime = '';
   this.people='';
   this.prepTime='';
-  this.steps='';
+  // this.steps='';
   this.videoLink='';
   this.newImage.id = ''
   this.newImage.image = ''
@@ -210,12 +219,18 @@ export class Tab3Page{
       id: this.id})
   }
 
-  addControl(){
-    this.stepCount++;
-    this.myForm.addControl('step' + this.stepCount, new FormControl('', Validators.required));
+  
+  addSteps() {
+    this.steps.push({
+      step: ''
+    });
   }
 
-  removeControl(control){
-    this.myForm.removeControl(control.key);
+  removeSteps(i: number) {
+    this.steps.splice(i, 1);
+  }
+
+  logValue() {
+    console.log(this.steps);
   }
 }
