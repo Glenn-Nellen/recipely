@@ -36,7 +36,7 @@ export class Tab3Page{
   errorMessage: string = '';
   event: any;
 
-  recipeName = '';
+  naam = '';
   category = '';
   ingredients: any;
   mealTime = '';
@@ -54,7 +54,7 @@ export class Tab3Page{
   ngOnInit() {
  
     this.validations_form = this.formBuilder.group({
-      recipeName: new FormControl('', Validators.compose([
+      naam: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^.[a-zA-Z.]+$')
       ])),
@@ -93,7 +93,7 @@ export class Tab3Page{
             this.newImage.image = a;
             this.loading = false;
             this.db.collection('recipe').add({category: this.category, 
-              name: this.validations_form.get('recipeName').value, 
+              name: this.validations_form.get('naam').value, 
               // ingredient: this.ingredients, 
               mealTime: this.mealTime, 
               people: this.people, 
@@ -125,7 +125,7 @@ export class Tab3Page{
 
  
   validation_messages = {
-    'recipeName': [
+    'naam': [
       { type: 'required', message: 'Naam is verplicht.' },
       { type: 'pattern', message: 'Voer een geldige naam in.' }
     ],
@@ -141,7 +141,7 @@ export class Tab3Page{
  
   //Functie voor het uploaden van recept
   async uploadAlert() {
-    console.log(this.validations_form.get('recipeName').value);
+    console.log(this.validations_form.get('naam').value);
     const alert = await this.alertController.create({
       header: 'Recept toevoegen',
       message: 'Controleer eerst of alle velden correct zijn ingevuld',
@@ -185,7 +185,7 @@ export class Tab3Page{
   }
   // Verwijderd de inputs in het forumulier
   clearInputs(){
-  this.recipeName = '';
+  this.naam = '';
   this.ingredients = '';
   this.category = '';
   this.mealTime = '';
@@ -193,12 +193,14 @@ export class Tab3Page{
   this.prepTime='';
   this.steps='';
   this.videoLink='';
+  this.newImage.id = ''
+  this.newImage.image = ''
   }
 
   //Stuurt alle ingevulde velden in het formulier door naar Firebase
   uploadRecipe(){
     this.db.collection('recipe').add({category: this.category, 
-      name: this.recipeName, 
+      name: this.naam, 
       // ingredient: this.ingredients, 
       mealTime: this.mealTime, 
       people: this.people, 
