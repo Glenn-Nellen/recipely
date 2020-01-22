@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color= "secondary">
     <ion-title>Recept</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -9,15 +9,46 @@
 
 <ion-content>
    <div *ngFor="let item of recipe">
-     <h3>{{item.name}}</h3>
-      <h4>Ingrediënten:</h4>
-      <p>{{item.ingredient}}</p>
-      <p> Personen: {{item.people}}</p>
-      <p> Bereidingstijd: {{item.preptime}} Minuten</p>
+    <img src="{{ item.image }}"/>
 
-      <div *ngFor="let step of toArray(item.steps); let i = index; ">
-        <p>Stap: {{i + 1}} {{step.step}}</p>
+    <div class="ion-text-center">
+      <h1>{{item.name}}</h1>
+    </div>
+  
+    <ion-list>
+      <ion-item>
+        <div class="ion-text-center">
+          <h4>Tijd gerecht</h4>
+          <h5>{{item.mealTime}}</h5>
         </div>
+      </ion-item>
+      <ion-item>
+        <div class="ion-text-center">
+          <h4>Personen</h4>
+          <h5>{{item.people}}</h5>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div class="ion-text-center">
+          <h4>Bereidingstijd</h4>
+          <h5>{{item.preptime}} minuten</h5>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div class="ion-text-center">
+          <h4>Ingrediënten</h4>
+          <h5>{{item.ingredient}}</h5>
+        </div>
+      </ion-item>
+
+      <section>
+        <ion-button color="danger">Stappen</ion-button>
+        <ion-button color="danger">Beoordeel recept</ion-button>
+      </section>
+
+
+
+    </ion-list>
 
    </div>
   </ion-content>

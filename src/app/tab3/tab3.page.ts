@@ -57,7 +57,7 @@ export class Tab3Page{
     this.validations_form = this.formBuilder.group({
       naam: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^.[a-zA-Z.]+$')
+        Validators.pattern('^.[a-zA-Z]+.[a-zA -Z]+$')
       ])),
       people: new FormControl('', Validators.compose([
         Validators.required,

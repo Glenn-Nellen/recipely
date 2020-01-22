@@ -41,7 +41,13 @@
       <ion-select formControlName="ingredients" multiple="true" cancelText="Cancel" okText="Select">
         <ion-select-option value="bacon">Bacon</ion-select-option>
         <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
+        <ion-select-option value="Aardappelpuree">Aardappelpuree</ion-select-option>
         <ion-select-option value="Olijven">Olijven</ion-select-option>
+        <ion-select-option value="Knoflook">Knoflook</ion-select-option>
+        <ion-select-option value="Rookworst">Rookworst</ion-select-option>
+        <ion-select-option value="Prei">Prei</ion-select-option>
+        <ion-select-option value="Citroen">Citroen</ion-select-option>
+        <ion-select-option value="Coleslaw">Coleslaw</ion-select-option>
         <ion-select-option value="Kaas">Kaas</ion-select-option>
         <ion-select-option value="Paprika">Paprika</ion-select-option>
         <ion-select-option value="Uien">Uien</ion-select-option>
@@ -49,6 +55,26 @@
         <ion-select-option value="Annanas">Annanas</ion-select-option>
         <ion-select-option value="Worst">Worst</ion-select-option>
         <ion-select-option value="Spinazie">Spinazie</ion-select-option>
+        <ion-select-option value="Wraps">Wraps</ion-select-option>
+        <ion-select-option value="Bruine bol">Bruine bol</ion-select-option>
+        <ion-select-option value="Witte bol">Witte bol</ion-select-option>
+        <ion-select-option value="Pasta">Pasta</ion-select-option>
+        <ion-select-option value="Tomaat">Tomaat</ion-select-option>
+        <ion-select-option value="Tuinkers">Tuinkers</ion-select-option>
+        <ion-select-option value="Olijfolie">Olijfolie</ion-select-option>
+        <ion-select-option value="Zonnebloemolie">Zonnebloemolie</ion-select-option>
+        <ion-select-option value="Pijnboompitten">Pijnboompitten</ion-select-option>
+        <ion-select-option value="Mosterd">Mosterd</ion-select-option>
+        <ion-select-option value="Kipragout">Kipragout</ion-select-option>
+        <ion-select-option value="Kip">Kip</ion-select-option>
+        <ion-select-option value="Bloemkool">BloemKool</ion-select-option>
+        <ion-select-option value="Zalm">Zalm</ion-select-option>
+        <ion-select-option value="Kokosmelk">Kokosmelk</ion-select-option>
+        <ion-select-option value="Garnalen">Garnalen</ion-select-option>
+        <ion-select-option value="visbouillontablet">visbouillontablet</ion-select-option>
+        <ion-select-option value="Witte rijst">Witte rijst</ion-select-option>
+        <ion-select-option value="Gele rijst ">Gele rijst</ion-select-option>
+        
       </ion-select>
     </ion-item>
 
@@ -116,13 +142,6 @@
         </div>
       </ng-container>
     </div>
-
-
-
-
-
-
-
      <div class="ion-text-center">
       <h1>Stap 3</h1>
     </div>
@@ -137,8 +156,6 @@
         <div class="text-right">
         </div>
       </div>
-
-
       <div class="form-group">
         <ion-item>
         <ion-input required type="text" [(ngModel)]="step.step" name="step_{{i}}" placeholder="Voer hier je beschrijving in"></ion-input>
@@ -152,14 +169,6 @@
 </ion-list>
 
 <ion-button expand="full" color="light" (click)="addSteps()">Voeg een stap toe</ion-button>
-
-  
-
-
-
-
-
-
 
     <div class="ion-text-center">
       <h1>Stap 4</h1>
