@@ -1,16 +1,19 @@
 <ion-content>
   <ion-img src="../assets/images/Recipely.png"></ion-img>
+  <div *ngIf="authenticationService.userData | async">
+    <h3 >Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}</h3>
+    <p>Klik hier om weer naar de app toe te gaan!</p>
+    <button (click)="loggedIn()"> Bekijk recepten!</button>
+    <p>Is dit niet je account? Klik dan op uitloggen en log vervolgens dan in je eigen account.</p>
+    <button (click)="signOut()">Logout</button>
+  </div>
+  
+  <div *ngIf="!(authenticationService.userData | async)">
+    <input type="text" [(ngModel)]="email" placeholder="email">
+    <input type="password" [(ngModel)]="password" placeholder="password">
 
-  <section>
-    <div class="ion-padding">
-      <ion-button color= "light" (click)="toRegisterPage()" expand="block" type="submit" class="ion-no-margin">Meld je aan</ion-button>
-       <p class="go-to-login" text-center>of gebruik een</p>
-      <ion-button expand="full" color="danger" (click)="goLoginPage()">google account</ion-button>
-      <p class="go-to-login">Al een account? <a (click)="toLoginPage()">Log in</a></p> 
-      <p class="go-to-login">Admin? <a (click)="skipLogin()">Skip login</a></p> 
+    <button (click)="signUp()">Sign Up</button>
 
-    </div>
-    
-  </section>
-
+    <button (click)="signIn()">Login</button>
+</div>
 </ion-content>

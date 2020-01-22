@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  *ngIf="authenticationService.userData | async">
   <ion-toolbar color= "secondary" >
     <ion-buttons slot='start'>
       <ion-menu-button ></ion-menu-button>
@@ -8,7 +8,7 @@
   
 </ion-header>
 
-<ion-content >
+<ion-content  *ngIf="authenticationService.userData | async" >
   <ion-card tappable (click)="toMeatRecipes('Vlees')" >
     <img src="../../assets/images/vlees.jpg"/>
   </ion-card>

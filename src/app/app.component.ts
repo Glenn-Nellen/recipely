@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-
+import { AuthenticationService} from './shared/authentication.service'
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,7 +16,8 @@ export class AppComponent {
     private router : Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public AuthenticationService: AuthenticationService 
   ) {
     this.sideMenu();
     this.initializeApp();
@@ -29,7 +30,9 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
+  logout() {
+    this.AuthenticationService.signOut()
+  }
   sideMenu()
   {
     this.navigate =
@@ -48,12 +51,7 @@ export class AppComponent {
         title : "Mijn profiel",
         url   : "/mijnprofiel",
         icon  : "md-person"
-      },
-      {
-        title : "Uitloggen",
-        url   : "/login",
-        icon  : "md-log-out"
-      },
+      }
     ]
   }
 

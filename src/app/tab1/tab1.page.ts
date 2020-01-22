@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication.service'
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page{
 
-  constructor(private router: Router){}
+  constructor(public authenticationService: AuthenticationService, private router: Router){}
   toMeatRecipes(category) {
     this.router.navigate(["categories"], { state: {category: category} } );
   }
