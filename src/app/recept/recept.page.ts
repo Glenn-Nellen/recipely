@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recept',
@@ -12,7 +13,12 @@ receptid = ''
 recipeName = ''
 public recipe: any[];
 
-  constructor(private firestore: AngularFirestore, private router: Router) {
+  constructor( private navCtrl: NavController, private firestore: AngularFirestore, private router: Router) {
+  }
+
+  goToSteps(){
+    this.router.navigate(["stappen"], { state: {receptid: this.receptid} } );
+    
   }
 
   ngOnInit() {

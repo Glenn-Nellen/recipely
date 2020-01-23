@@ -17,11 +17,13 @@ import { AuthenticateService } from './services/authentication.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import * as firebase from 'firebase';
+import { TranslatePipePipe } from './translate-pipe.pipe';
+import { SafePipe } from './safe.pipe';
 
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TranslatePipePipe, SafePipe],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(environment.firebase, 'recipely-inc'),

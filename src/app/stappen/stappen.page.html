@@ -1,9 +1,27 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>stappen</ion-title>
+  <ion-toolbar color= "secondary">
+    <ion-title>Stappen</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list>
+    <ion-item>
+      <div *ngFor="let item of recipe">
+        <ion-list *ngFor="let step of toArray(item.steps); let i = index; ">
+          <ion-item>
+            <p>Stap {{i + 1}}: {{step.step}}</p>
+          </ion-item>
+        </ion-list>
+        <h4>Video</h4>
+        <iframe height="315" src="{{item.video}}"></iframe>
+      </div>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
