@@ -27,9 +27,9 @@ export class CategoriesPage implements OnInit {
     this.recipeList = this.loadedRecipeList;
   }
 
-  toRecipe(id) {
+  toRecipe(id, name) {
     // console.log(id)
-    this.router.navigate(["recept"], { state: {receptid: id} } );
+    this.router.navigate(["recept"], { state: {receptid: id, recipeName: name} } );
   }
   
   values = '';

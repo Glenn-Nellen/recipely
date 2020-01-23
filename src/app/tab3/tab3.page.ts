@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFireAuth } from '@angular/fire/auth'
 import * as uuid from 'uuid'
 import { AlertController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth'
 import { AuthenticationService } from '../shared/authentication.service'
-import { auth } from 'firebase/app'
 
 //import { firestore } from 'firebase';
 
@@ -49,7 +48,11 @@ export class Tab3Page{
   prepTime='';
   videoLink='';
   id = uuid.v4();
-  constructor(public afAuth: AngularFireAuth,public authenticationService: AuthenticationService, private afs: AngularFirestore, private storage: AngularFireStorage, public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
+  constructor(public afAuth: AngularFireAuth,
+    public authenticationService: AuthenticationService, 
+    private afs: AngularFirestore, 
+    private storage: AngularFireStorage, 
+    public alertController: AlertController, private router: Router, private formBuilder: FormBuilder, private db: AngularFirestore){
 
     this.myForm = formBuilder.group({
       user: new FormControl('', Validators.required)
