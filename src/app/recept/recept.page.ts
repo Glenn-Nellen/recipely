@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth'
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -13,7 +14,7 @@ receptid = ''
 recipeName = ''
 public recipe: any[];
 
-  constructor( private navCtrl: NavController, private firestore: AngularFirestore, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private navCtrl: NavController, private firestore: AngularFirestore, private router: Router, private db: AngularFirestore) {
   }
 
   goToSteps(){
