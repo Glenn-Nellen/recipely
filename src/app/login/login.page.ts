@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { AuthenticationService } from '../shared/authentication.service'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,9 +14,11 @@ export class LoginPage implements OnInit {
 
   public email: string
   public password: string
-
-  constructor(public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) {}
   
+  constructor(public afAuth: AngularFireAuth,public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) {
+    
+  }
+
   signUp() {
       this.authenticationService.SignUp(this.email, this.password)
       this.email = ''
@@ -47,7 +50,7 @@ export class LoginPage implements OnInit {
   // skipLogin() {
   //   this.router.navigate(['/tabs/tab1'])
   // }
-  // goLoginPage() {
-  //   this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  // }
+  goLoginPage() {
+    
+  }
 }

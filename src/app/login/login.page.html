@@ -1,11 +1,12 @@
 <ion-content>
   <ion-img src="../assets/images/Recipely.png"></ion-img>
   <div *ngIf="authenticationService.userData | async">
-    <h3 >Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}</h3>
-    <p>Klik hier om weer naar de app toe te gaan!</p>
-    <button (click)="loggedIn()"> Bekijk recepten!</button>
-    <p>Is dit niet je account? Klik dan op uitloggen en log vervolgens dan in je eigen account.</p>
-    <button (click)="signOut()">Logout</button>
+      <h3 >Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}</h3>
+      <p>Klik hier om weer naar de app toe te gaan!</p>
+      <button (click)="loggedIn()"> Bekijk recepten!</button>
+      <p>Is dit niet je account? Klik dan op uitloggen en log vervolgens dan in je eigen account.</p>
+      <button (click)="signOut()">Logout</button>
+    
   </div>
   
   <div *ngIf="!(authenticationService.userData | async)">

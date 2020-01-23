@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header  *ngIf="authenticationService.userData | async">
   <ion-toolbar>
     <ion-title>Voeg een recept toe</ion-title>
     <ion-buttons slot="start">
@@ -8,7 +8,7 @@
 </ion-header>
 
  
-<ion-content padding>
+<ion-content padding  *ngIf="authenticationService.userData | async">
   <form class="form" [formGroup]="validations_form">
     
   <div class="ion-padding">

@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Mijn recepten</ion-title>
+  <ion-toolbar color= "secondary">
+    <ion-title>Recepten van {{this.user}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
       </ion-buttons>
@@ -8,5 +8,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar showcancelbutton="" (keyup)="filterList($event)"></ion-searchbar>
+  <div *ngFor="let item of recipeList">
+    <ion-card tappable (click)="toRecipe(item.id)" >
+      <img src="{{ item.image }}"/>
+      <ion-card-header>
+        <ion-card-subtitle>Bevat {{ item.ingredient }}</ion-card-subtitle>
+        <ion-card-title>{{item.name}}</ion-card-title>  
+        <ion-card-content>Gemaakt door {{item.user}}</ion-card-content>
+      </ion-card-header>
+      <ion-card-content>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 </ion-content>

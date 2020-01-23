@@ -11,20 +11,18 @@ export class AuthenticationService {
   userData: Observable<firebase.User>
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
     this.userData = angularFireAuth.authState;
-    
-
    }
-   
    // Signup
    GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
+    
   }  
 
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.angularFireAuth.auth.signInWithPopup(provider)
-    .then((result) => {
-        console.log('Login 200') 
+    .then((res) => {
+        console.log('Login 200', res) 
         this.router.navigate(["tabs/tab1"]);
     }).catch((error) => {
         console.log(error)
@@ -50,8 +48,8 @@ export class AuthenticationService {
      .auth
      .signInWithEmailAndPassword(email, password)
      .then(res => {
-       console.log('SignIn 200', res);
-       this.router.navigate(["tabs/tab1"]);
+        console.log('SignIn 200', res);
+        this.router.navigate(["tabs/tab1"]);
      })
      .catch(err => {
        console.log('Something is wrong: ', err.message)
