@@ -15,5 +15,10 @@
     <button (click)="signUp()">Sign Up</button>
 
     <button (click)="signIn()">Login</button>
+    <div class="formGroup">
+      <button type="button" (click)="authenticationService.GoogleAuth()">
+        Log in with Google
+      </button>
+    </div>
 </div>
 </ion-content>

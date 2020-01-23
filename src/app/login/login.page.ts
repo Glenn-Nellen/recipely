@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
 
   constructor(public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) {}
   
-  SignUp() {
+  signUp() {
       this.authenticationService.SignUp(this.email, this.password)
       this.email = ''
       this.password = ''
