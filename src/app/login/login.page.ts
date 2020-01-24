@@ -40,16 +40,16 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   
-  // toRegisterPage() {
-  //   this.router.navigate(["register"]);
-  // }
+   toRegisterPage() {
+     this.router.navigate(["register"]);
+   }
 
-  // toLoginPage() {
-  //   this.router.navigate(["inloggen"]);
-  // }
-  // skipLogin() {
-  //   this.router.navigate(['/tabs/tab1'])
-  // }
+   toLoginPage() {
+     this.router.navigate(["inloggen"]);
+   }
+   skipLogin() {
+     this.router.navigate(['/tabs/tab1'])
+   }
   goLoginPage() {
     
   }

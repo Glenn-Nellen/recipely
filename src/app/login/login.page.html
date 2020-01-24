@@ -8,18 +8,16 @@
       <button (click)="signOut()">Logout</button>
     
   </div>
-  
+
   <div *ngIf="!(authenticationService.userData | async)">
-    <input type="text" [(ngModel)]="email" placeholder="email">
-    <input type="password" [(ngModel)]="password" placeholder="password">
-
-    <button (click)="signUp()">Sign Up</button>
-
-    <button (click)="signIn()">Login</button>
-    <div class="formGroup">
-      <button type="button" (click)="authenticationService.GoogleAuth()">
-        Log in with Google
-      </button>
+  <section>
+    <div class="ion-padding">
+      <ion-button color= "light" (click)="toRegisterPage()" expand="block" type="submit" class="ion-no-margin">Meld je aan!</ion-button>
+       <p class="go-to-login" text-center>Meld je aan met een google account</p>
+      <ion-button expand="full" (click)="authenticationService.GoogleAuth()" color="danger" (click)="goLoginPage()">Meld je aan</ion-button>
+      <p class="go-to-login">Al een account? <a (click)="toLoginPage()">Log in</a></p> 
     </div>
+    
+  </section>
 </div>
 </ion-content>

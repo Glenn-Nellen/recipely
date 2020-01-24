@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authentication.service';
+import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
   selector: 'app-inloggen',
@@ -12,12 +13,15 @@ export class InloggenPage implements OnInit {
 
   validations_form: FormGroup;
   errorMessage: string = '';
+  public email: string
+  public password: string
  
   constructor(
  
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public authenticationService: AuthenticationService,
  
   ) { }
  
@@ -46,17 +50,11 @@ export class InloggenPage implements OnInit {
       { type: 'minlength', message: 'Wachtwoord moet minimaal uit 5 karakters bestaan.' }
     ]
   };
- 
- 
-  loginUser(value){
-    this.authService.loginUser(value)
-    .then(res => {
-      console.log(res);
-      this.errorMessage = "";
-      this.navCtrl.navigateForward('/tabs/tab1');
-    }, err => {
-      this.errorMessage = err.message;
-    })
+
+  signIn() {
+    this.authenticationService.SignIn(this.email, this.password)
+    this.email = ''
+    this.password = ''
   }
  
   goToRegisterPage(){

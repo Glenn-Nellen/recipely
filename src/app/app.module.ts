@@ -21,7 +21,7 @@ import { TranslatePipePipe } from './translate-pipe.pipe';
 import { SafePipe } from './safe.pipe';
 
 firebase.initializeApp(environment.firebase);
-
+  
 @NgModule({
   declarations: [AppComponent, TranslatePipePipe, SafePipe],
   entryComponents: [],

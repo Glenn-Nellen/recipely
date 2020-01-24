@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthenticateService } from '../services/authentication.service';
 import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../shared/authentication.service'
  
 @Component({
   selector: 'app-register',
@@ -14,6 +15,8 @@ export class RegisterPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
+  public email: string
+  public password: string
  
   validation_messages = {
    'email': [
@@ -29,7 +32,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public authenticationService: AuthenticationService
   ) {}
  
   ngOnInit(){
@@ -60,6 +64,12 @@ export class RegisterPage implements OnInit {
  
   goLoginPage(){
     this.navCtrl.navigateBack('');
+  }
+
+  signUp() {
+    this.authenticationService.SignUp(this.email, this.password)
+    this.email = ''
+    this.password = ''
   }
  
  
