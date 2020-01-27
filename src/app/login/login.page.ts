@@ -21,13 +21,10 @@ export class LoginPage implements OnInit {
 
   signUp() {
       this.authenticationService.SignUp(this.email, this.password)
-      this.email = ''
-      this.password = ''
     }
   signIn() {
     this.authenticationService.SignIn(this.email, this.password)
-    this.email = ''
-    this.password = ''
+    
   }
 
   signOut() {

@@ -53,8 +53,7 @@ export class InloggenPage implements OnInit {
 
   signIn() {
     this.authenticationService.SignIn(this.email, this.password)
-    this.email = ''
-    this.password = ''
+
   }
  
   goToRegisterPage(){
