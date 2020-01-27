@@ -59,5 +59,9 @@ export class InloggenPage implements OnInit {
   goToRegisterPage(){
     this.navCtrl.navigateForward('/register');
   }
+
+  goToNewPasswordPage(){
+    this.navCtrl.navigateForward('/newpassword');
+  }
  
 }

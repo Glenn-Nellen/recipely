@@ -57,6 +57,10 @@ const routes: Routes = [
     path: 'review',
     loadChildren: () => import('./review/review.module').then( m => m.ReviewPageModule)
   },
+  {
+    path: 'nieuwwachtwoord',
+    loadChildren: () => import('./nieuwwachtwoord/nieuwwachtwoord.module').then( m => m.NieuwwachtwoordPageModule)
+  },
 
   //{ path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
   //{ path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },

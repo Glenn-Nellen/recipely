@@ -26,9 +26,7 @@ export class LoginPage implements OnInit {
     this.authenticationService.SignIn(this.email, this.password)
     
   }
-  resetPassword() {
-    this.authenticationService.resetPassword(this.forgotEmail)
-  }
+  
   signOut() {
     this.authenticationService.signOut()
   }
