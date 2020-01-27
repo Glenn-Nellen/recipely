@@ -41,5 +41,8 @@ public recipe: any[];
       name: this.recipeName
       })
   }
+  goToReview() {
+    this.router.navigate(["review"], { state: {receptid: this.receptid} } );
+  }
 }
 
