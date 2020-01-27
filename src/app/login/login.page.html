@@ -16,6 +16,10 @@
        <p class="go-to-login" text-center>Meld je aan met een google account</p>
       <ion-button expand="full" (click)="authenticationService.GoogleAuth()" color="danger" (click)="goLoginPage()">Meld je aan</ion-button>
       <p class="go-to-login">Al een account? <a (click)="toLoginPage()">Log in</a></p> 
+      <p>Wachtwoord vergeten? Vul je email hieronder in en klik op versturen</p>
+      <input [(ngModel)]='forgotEmail' type="text">
+      <ion-button color= "light" (click)="resetPassword()" expand="block" type="submit" class="ion-no-margin">Stuur email</ion-button>
+
     </div>
     
   </section>

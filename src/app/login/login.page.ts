@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
 
   public email: string
   public password: string
-  
+  public forgotEmail: string
   constructor(public afAuth: AngularFireAuth,public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) {
     
   }
@@ -26,7 +26,9 @@ export class LoginPage implements OnInit {
     this.authenticationService.SignIn(this.email, this.password)
     
   }
-
+  resetPassword() {
+    this.authenticationService.resetPassword(this.forgotEmail)
+  }
   signOut() {
     this.authenticationService.signOut()
   }
