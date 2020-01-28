@@ -30,7 +30,12 @@ export class Tab3Page{
     image: ''
   }
 
-  loading: boolean = false;;
+  loading: boolean = false;
+  stap1: boolean = true;
+  stap2: boolean = false;
+  stap3: boolean = false;
+  stap4: boolean = false;
+;
 
   public myForm: FormGroup;
   private stepCount: number = 1;
@@ -242,4 +247,34 @@ export class Tab3Page{
   logValue() {
     console.log(this.steps);
   }
+
+
+  back1() {
+    this.stap1 = true
+    this.stap2 = false
+  }
+  back2() {
+    this.stap2 = true
+    this.stap3 = false
+  }
+  back3() {
+    this.stap3 = true
+    this.stap4 = false
+  }
+  Stap2() {
+    this.stap2 = true
+    this.stap1 = false
+  }
+  Stap3() {
+    this.stap3 = true
+    this.stap2 = false
+  }
+  Stap4() {
+    this.stap4 = true
+    this.stap3 = false
+  }
+  
 }
+
+
+
