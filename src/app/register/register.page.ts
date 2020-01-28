@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AuthenticateService } from '../services/authentication.service';
 import { NavController } from '@ionic/angular';
 import { AuthenticationService } from '../shared/authentication.service'
  
@@ -31,7 +30,6 @@ export class RegisterPage implements OnInit {
  
   constructor(
     private navCtrl: NavController,
-    private authService: AuthenticateService,
     private formBuilder: FormBuilder,
     public authenticationService: AuthenticationService
   ) {}
@@ -48,19 +46,8 @@ export class RegisterPage implements OnInit {
       ])),
     });
   }
- 
-  tryRegister(value){
-    this.authService.registerUser(value)
-     .then(res => {
-       console.log(res);
-       this.errorMessage = "";
-       this.successMessage = "Account is aangemaakt, je kunt inloggen";
-     }, err => {
-       console.log(err);
-       this.errorMessage = err.message;
-       this.successMessage = "";
-     })
-  }
+  
+  
  
   goLoginPage(){
     this.navCtrl.navigateBack('');

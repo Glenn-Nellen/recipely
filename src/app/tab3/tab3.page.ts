@@ -208,16 +208,10 @@ export class Tab3Page{
   }
   // Verwijderd de inputs in het forumulier
   clearInputs(){
-  this.naam = '';
-  this.ingredients = '';
-  this.category = '';
-  this.mealTime = '';
-  this.people='';
-  this.prepTime='';
-  // this.steps='';
-  this.videoLink='';
-  this.newImage.id = ''
-  this.newImage.image = ''
+    this.validations_form.reset();
+    this.steps = [{
+      step: ''
+    }];
   }
 
   //Stuurt alle ingevulde velden in het formulier door naar Firebase

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { AuthenticateService } from '../services/authentication.service';
 import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class InloggenPage implements OnInit {
   constructor(
  
     private navCtrl: NavController,
-    private authService: AuthenticateService,
     private formBuilder: FormBuilder,
     public authenticationService: AuthenticationService,
  
