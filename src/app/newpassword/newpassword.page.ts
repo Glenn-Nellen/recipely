@@ -14,12 +14,15 @@ import * as firebase from 'firebase';
 export class NewpasswordPage implements OnInit {
 
   public forgotEmail: string
-  constructor(public afAuth: AngularFireAuth, public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) { }
+  public checkEmail = false
+  public errorMessage: string
+  public email:string
+  constructor(public alertController: AlertController, public afAuth: AngularFireAuth, public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) { }
   ngOnInit() {
   }
   resetPassword() {
     var auth = firebase.auth();
-    return auth.sendPasswordResetEmail(this.validations_form.get('email').value)
+    return auth.sendPasswordResetEmail(this.email)
     .then((res) => {this.checkEmail = true, this.errorMessage = 'Success!'})
     .catch((error) => {this.checkEmail = false, this.errorMessage = error})
   }
