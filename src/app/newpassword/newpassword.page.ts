@@ -4,6 +4,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthenticationService } from '../shared/authentication.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-newpassword',
@@ -20,7 +22,8 @@ export class NewpasswordPage implements OnInit {
   public password: string
   public forgotEmail: string
 
-  constructor(private formBuilder: FormBuilder,public afAuth: AngularFireAuth, public authenticationService: AuthenticationService, private router: Router, public modalController: ModalController) { }
+  public checkEmail = false
+  constructor(public alertController: AlertController, private formBuilder: FormBuilder,public afAuth: AngularFireAuth, private router: Router, public modalController: ModalController) { }
   
   ngOnInit(){
     this.validations_form = this.formBuilder.group({
@@ -37,7 +40,10 @@ export class NewpasswordPage implements OnInit {
 
 
   resetPassword() {
-    this.authenticationService.resetPassword(this.forgotEmail)
+    var auth = firebase.auth();
+    return auth.sendPasswordResetEmail(this.validations_form.get('email').value)
+    .then((res) => {this.checkEmail = true, this.errorMessage = 'Success!'})
+    .catch((error) => {this.checkEmail = false, this.errorMessage = error})
   }
 
   validation_messages = {
@@ -47,5 +53,52 @@ export class NewpasswordPage implements OnInit {
     ]
   }
 
+  async uploadAlert() {
+    console.log(this.checkEmail)
+    this.resetPassword()
+    console.log(this.checkEmail)
+    if(this.checkEmail) {
+      const alert = await this.alertController.create({
+        header: 'Notificatie',
+        message: 'Mail gestuurd',
+        buttons: [ {
+            text: 'Ok',
+            handler: () =>  {
+            
+              console.log('Sent email');  
+            }
+          }
+        ]
+      });
+    
+      await alert.present();
+      let result = await alert.onDidDismiss();
+      console.log(result);
+    
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Notificatie',
+        message: 'Deze email is niet geldig of is niet bekend in ons systeem.',
+        buttons: ['OK'],
+      });
+    
+      await alert.present();
+      let result = await alert.onDidDismiss();
+      console.log(result)
+    }
+      
+  }
+
+  async uploadDone() {
+    const alert = await this.alertController.create({
+      header: 'Notificatie',
+      message: 'Email verstuurd',
+      buttons: ['OK'],
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
+  }
 
 }
