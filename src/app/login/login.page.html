@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="background-image" no-scroll padding>
   <ion-img src="../assets/images/Recipely.png"></ion-img>
   <div *ngIf="authenticationService.userData | async">
       <h3 >Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}</h3>
@@ -11,11 +11,15 @@
 
   <div *ngIf="!(authenticationService.userData | async)">
   <section>
-    <div class="ion-padding">
-      <ion-button color= "light" (click)="toRegisterPage()" expand="block" type="submit" class="ion-no-margin">Meld je aan!</ion-button>
-       <p class="go-to-login" text-center>Meld je aan met een google account</p>
-      <ion-button expand="full" (click)="authenticationService.GoogleAuth()" color="danger" (click)="goLoginPage()">Meld je aan</ion-button>
-      <p class="go-to-login">Al een account? <a (click)="toLoginPage()"><ion-text color="primary">Log in</ion-text> </a></p> 
+     <div class="ion-padding">
+    <hr>
+      <ion-button color= "light" (click)="toRegisterPage()" expand="block" type="submit" class="ion-no-margin">Registreer</ion-button>
+    <hr>
+    <hr>
+      <ion-button expand="full" (click)="authenticationService.GoogleAuth()" color="danger" (click)="goLoginPage()">Registreer met Google</ion-button>
+    <hr>
+    <hr>
+      <ion-button expand="full" (click)="toLoginPage()" color="success" (click)="goLoginPage()">Login met je account</ion-button>
     </div>
     
   </section>
