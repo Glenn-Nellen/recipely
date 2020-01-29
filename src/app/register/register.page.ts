@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { AuthenticationService } from '../shared/authentication.service'
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
  
 @Component({
   selector: 'app-register',
@@ -31,7 +33,10 @@ export class RegisterPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
-    public authenticationService: AuthenticationService
+    public authenticationService: AuthenticationService,
+    private angularFireAuth: AngularFireAuth,
+    private router: Router,
+    public alertController: AlertController
   ) {}
  
   ngOnInit(){
@@ -54,10 +59,32 @@ export class RegisterPage implements OnInit {
   }
 
   signUp() {
-    this.authenticationService.SignUp(this.email, this.password)
-    this.email = ''
-    this.password = ''
+    this.angularFireAuth
+    .auth
+    .createUserWithEmailAndPassword(this.email, this.password)
+    .then(res => {
+      console.log('Signup 200', res);
+      this.registrationDone()
+      
+    })
+    .catch(err => {
+      console.log('Error: ', err.message)
+      this.errorMessage = err.message
+    })
   }
- 
- 
+  
+  async registrationDone() {
+    const alert = await this.alertController.create({
+      header: 'Registratie',
+      message: 'De registratie is gelukt, klik op OK om naar de app te gaan',
+      buttons: [{text: 'OK', handler: () => {
+        this.router.navigate(["tabs/tab1"]);
+      }
+    }]
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
+  }
 }
