@@ -182,7 +182,7 @@ export class Tab3Page{
             console.log('Bevestig recept');
             // this.uploadRecipe(); // Stuurt het recept naar Firebase
             this.uploadImage();
-            this.clearInputs(); // Zorgt ervoor dat alle inputs leeg zijn
+
             this.uploadDone();  // Zorgt ervoor dat je een notificatie krijgt als je een recept hebt aangemaakt.
 
           }
@@ -199,7 +199,14 @@ export class Tab3Page{
     const alert = await this.alertController.create({
       header: 'Recept',
       message: 'Recept is aangemaakt',
-      buttons: ['OK'],
+      buttons: [{text:'OK',
+    handler: () => {
+      this.router.navigate(['tabs/tab2'])
+      this.validations_form.reset();
+      this.steps = [{
+      step: ''
+    }];
+    }}],
     });
   
     await alert.present();
