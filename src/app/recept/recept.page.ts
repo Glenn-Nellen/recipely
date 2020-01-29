@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth'
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recept',
@@ -14,7 +14,7 @@ receptid = ''
 recipeName = ''
 public recipe: any[];
 
-  constructor(public afAuth: AngularFireAuth, private navCtrl: NavController, private firestore: AngularFirestore, private router: Router, private db: AngularFirestore) {
+  constructor(public alertController: AlertController, public afAuth: AngularFireAuth, private navCtrl: NavController, private firestore: AngularFirestore, private router: Router, private db: AngularFirestore) {
   }
 
   goToSteps(){
@@ -34,13 +34,29 @@ public recipe: any[];
   toArray(answers: object) {
     return Object.keys(answers).map(key => answers[key])
   }
-  addFavorite() {
+  
+
+  async addFavorite() {
     this.db.collection('favorite').add({
       recipe_id: this.receptid,
       user: this.user,
       name: this.recipeName
       })
+    const alert = await this.alertController.create({
+      header: 'Notificatie',
+      message: 'Recept aan favorieten toegevoegd!',
+      buttons: [{text: 'OK'},{text: 'Naar favorieten',handler: () => {
+       this.router.navigate(['favorieten'])
+      }
+    }]
+    });
+  
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
   }
+
+
   goToReview() {
     this.router.navigate(["review"], { state: {receptid: this.receptid} } );
   }
