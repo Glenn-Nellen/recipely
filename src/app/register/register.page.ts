@@ -55,7 +55,7 @@ export class RegisterPage implements OnInit {
   
  
   goLoginPage(){
-    this.navCtrl.navigateBack('');
+    this.router.navigate(['inloggen']);
   }
 
   signUp() {
