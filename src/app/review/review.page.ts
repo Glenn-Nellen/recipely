@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth'
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-review',
@@ -11,7 +11,7 @@ import { NavController } from '@ionic/angular';
 })
 export class ReviewPage implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private navCtrl: NavController, private firestore: AngularFirestore, private router: Router, private db: AngularFirestore) { }
+  constructor(public alertController: AlertController, public afAuth: AngularFireAuth, private navCtrl: NavController, private firestore: AngularFirestore, private router: Router, private db: AngularFirestore) { }
   receptid = ''
   review = ''
   currentRate= 5
@@ -28,13 +28,22 @@ export class ReviewPage implements OnInit {
     });
   }
 
-  addReview() {
+  async addReview() {
     this.revDoc.doc(this.user+'-'+this.receptid).set({
       recipe_id: this.receptid,
       user: this.user,
       review: this.review,
       rating: this.currentRate
     })
+    const alert = await this.alertController.create({
+      header: 'Notificatie',
+      message: 'Beoordeling is aangemaakt, dit is uw review: ' + this.review,
+      buttons: [{text: 'OK'}]
+    });
+    
+    await alert.present();
+    let result = await alert.onDidDismiss();
+    console.log(result);
     
   }
  
