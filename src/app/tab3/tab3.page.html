@@ -39,7 +39,7 @@
         </div>
         <ion-item>
           <ion-label>ingrediënten</ion-label>
-          <ion-select formControlName="ingredients" multiple="true" cancelText="Cancel" okText="Select">
+          <ion-select [(ngModel)]="ingredient" multiple="true" cancelText="Cancel" okText="Select" [ngModelOptions]="{standalone: true}">
             <ion-select-option value="bacon">Bacon</ion-select-option>
             <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
             <ion-select-option value="Aardappelpuree">Aardappelpuree</ion-select-option>

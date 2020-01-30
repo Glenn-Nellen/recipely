@@ -29,13 +29,14 @@ export class Tab3Page{
     id: this.afs.createId(), 
     image: ''
   }
-
+  ingredient= new Array()
   loading: boolean = false;
   stap1: boolean = true;
   stap2: boolean = false;
   stap3: boolean = false;
   stap4: boolean = false;
 ;
+ 
 
   public myForm: FormGroup;
   private stepCount: number = 1;
@@ -78,7 +79,7 @@ export class Tab3Page{
         Validators.required,
         Validators.pattern('[1-500.]')
       ])),
-      ingredients: new FormControl(),
+      // ingredients: new FormControl(),
       categorie: new FormControl(),
       mealTime: new FormControl(),
       video: new FormControl(),
@@ -114,7 +115,7 @@ export class Tab3Page{
             this.db.collection('recipe').add({
               category: this.validations_form.get('categorie').value, 
               name: this.validations_form.get('naam').value, 
-              ingredient: this.validations_form.get('ingredients').value, 
+              ingredient: this.ingredient.join(', '), 
               mealTime: this.validations_form.get('mealTime').value, 
               people: this.validations_form.get('people').value, 
               preptime: this.validations_form.get('prepTime').value,
@@ -164,7 +165,8 @@ export class Tab3Page{
  
   //Functie voor het uploaden van recept
   async uploadAlert() {
-    console.log(this.validations_form.get('naam').value);
+    console.log(this.ingredient);
+    console.log(this.ingredient.join(', '))
     const alert = await this.alertController.create({
       header: 'Recept toevoegen',
       message: 'Controleer eerst of alle velden correct zijn ingevuld',
