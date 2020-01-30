@@ -15,6 +15,7 @@ export class ReviewPage implements OnInit {
   receptid = ''
   review = ''
   currentRate= 5
+  revDoc = this.db.collection("review")
   user = this.afAuth.auth.currentUser.email
   public recipe: any[];
 
@@ -28,12 +29,13 @@ export class ReviewPage implements OnInit {
   }
 
   addReview() {
-    this.db.collection('review').add({
+    this.revDoc.doc(this.user+'-'+this.receptid).set({
       recipe_id: this.receptid,
       user: this.user,
       review: this.review,
       rating: this.currentRate
-      })
+    })
+    
   }
  
 

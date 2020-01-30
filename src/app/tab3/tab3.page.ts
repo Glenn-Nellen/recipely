@@ -72,11 +72,11 @@ export class Tab3Page{
       ])),
       people: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('[1-50.]')
+        Validators.pattern('[1-50]')
       ])),
       prepTime: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('[1-9.]')
+        Validators.pattern('[1-500.]')
       ])),
       ingredients: new FormControl(),
       categorie: new FormControl(),

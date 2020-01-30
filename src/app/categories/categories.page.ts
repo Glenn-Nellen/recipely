@@ -48,7 +48,7 @@ export class CategoriesPage implements OnInit {
   
     this.recipeList = this.recipeList.filter(recipe => {
       if (recipe.ingredient && searchTerm) {
-        if (recipe.ingredient[0].toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+        if (recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
           return true;
         }
         return false;
