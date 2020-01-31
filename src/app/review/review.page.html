@@ -10,13 +10,18 @@
 <ion-content>
   <ion-list *ngFor="let item of recipe">
     <ion-item>
-      <h4>Review door: {{ item.user }}</h4>
-      <h5>{{item.review}}</h5>
-      <ngb-rating max="5" readonly="true" rate="{{item.rating}}">
-          <ng-template let-fill="fill" let-index="index">
-            <span class="star" [class.filled]="fill === 100">&#9733;</span>
-          </ng-template>
+      <ion-label>
+        <h5>Review door: {{ item.user }}</h5>
+          <p>
+            <ngb-rating max="5" readonly="true" rate="{{item.rating}}">
+            <ng-template let-fill="fill" let-index="index">
+              <span class="star" [class.filled]="fill === 100">&#9733;</span>
+            </ng-template>
         </ngb-rating>
+      </p>
+          
+        <p>{{item.review}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 

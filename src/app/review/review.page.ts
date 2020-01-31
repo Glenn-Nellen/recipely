@@ -22,9 +22,10 @@ export class ReviewPage implements OnInit {
   ngOnInit() {
     this.receptid = this.router.getCurrentNavigation().extras.state.receptid
     this.firestore.collection(`review`, ref => ref.where('recipe_id', '==', this.receptid)).valueChanges()
-    .subscribe(recipeList => { 
-     this.recipe = recipeList;
+    .subscribe(reviewList => { 
+     this.recipe = reviewList;
      console.log(this.recipe)
+     this.recipe.sort(function(a, b){return b.rating - a.rating})
     });
   }
 
@@ -38,7 +39,9 @@ export class ReviewPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Notificatie',
       message: 'Beoordeling is aangemaakt, dit is uw review: ' + this.review,
-      buttons: [{text: 'OK'}]
+      buttons: [{text: 'OK', handler: () => {
+        this.review = ''
+      }}]
     });
     
     await alert.present();
