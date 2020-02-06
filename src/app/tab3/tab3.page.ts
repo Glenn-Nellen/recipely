@@ -88,7 +88,7 @@ export class Tab3Page{
     saveEvent(event) {
       this.event = event.target.files[0]
     }
-    uploadImage() {
+    uploadRecipe() {
     this.loading = true;
       var reader = new FileReader();
      
@@ -105,11 +105,9 @@ export class Tab3Page{
         const ref = result.ref;
         result.task.then(a => {
           ref.getDownloadURL().subscribe(a => {
-            console.log(a);
-            
+            console.log(a);   
             this.newImage.image = a;
             this.loading = false;
-            
             this.db.collection('recipe').add({
               category: this.validations_form.get('categorie').value, 
               name: this.validations_form.get('naam').value, 
@@ -123,18 +121,11 @@ export class Tab3Page{
               image: this.newImage.image,
               user: this.user
               })
-              
-            // this.afs.collection('Image').doc(this.newImage.id).set(this.newImage);
-
           });
-
-          
         });
       }, error => {
         alert("Error");
       }
-
-    
   }
 
   SaveImageRef(filePath, file) {
@@ -180,9 +171,7 @@ export class Tab3Page{
           text: 'Bevestig recept',
           handler: () =>  { 
             console.log('Bevestig recept');
-            // this.uploadRecipe(); // Stuurt het recept naar Firebase
-            this.uploadImage();
-
+            this.uploadRecipe();
             this.uploadDone();  // Zorgt ervoor dat je een notificatie krijgt als je een recept hebt aangemaakt.
 
           }
@@ -219,19 +208,6 @@ export class Tab3Page{
     this.steps = [{
       step: ''
     }];
-  }
-
-  //Stuurt alle ingevulde velden in het formulier door naar Firebase
-  uploadRecipe(){
-    this.db.collection('recipe').add({category: this.category, 
-      name: this.naam, 
-      // ingredient: this.ingredients, 
-      mealTime: this.mealTime, 
-      people: this.people, 
-      preptime: this.prepTime, 
-      steps: this.steps, 
-      video: this.videoLink, 
-      id: this.id})
   }
 
   

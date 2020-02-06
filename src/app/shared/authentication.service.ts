@@ -13,7 +13,7 @@ export class AuthenticationService {
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
     this.userData = angularFireAuth.authState;
    }
-   // Signup
+   // Signup with google
    GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider());
     
@@ -29,6 +29,8 @@ export class AuthenticationService {
         console.log(error)
     })
   }
+
+  // Signup
    SignUp(email: string, password: string) {
      this.angularFireAuth
      .auth

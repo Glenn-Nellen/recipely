@@ -29,6 +29,7 @@ export class ReviewPage implements OnInit {
     });
   }
 
+  //Add review
   async addReview() {
     this.revDoc.doc(this.user+'-'+this.receptid).set({
       recipe_id: this.receptid,
@@ -43,11 +44,9 @@ export class ReviewPage implements OnInit {
         this.review = ''
       }}]
     });
-    
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result);
-    
   }
  
 
