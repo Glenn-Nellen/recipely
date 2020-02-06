@@ -21,18 +21,19 @@ export class CategoriesPage implements OnInit {
       this.loadedRecipeList = recipeList;
     });
   }
-
-
-  initializeItems(): void {
-    this.recipeList = this.loadedRecipeList;
-  }
-
   toRecipe(id, name) {
     // console.log(id)
     this.router.navigate(["recept"], { state: {receptid: id, recipeName: name} } );
   }
+
+
+  
+  initializeItems(): void {
+    this.recipeList = this.loadedRecipeList;
+  }
   
   values = '';
+  // filter search results
   filterList(event: any) {
     this.values += event.target.value + ' | ';
     

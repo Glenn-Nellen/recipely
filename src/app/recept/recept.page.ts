@@ -41,7 +41,7 @@ public recipe: any[];
     return Object.keys(answers).map(key => answers[key])
   }
   
-
+//Add favorite
   async addFavorite() {
     this.favRef.doc(this.user+'-'+this.receptid).set({
       recipe_id: this.receptid,
