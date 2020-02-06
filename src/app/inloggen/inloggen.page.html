@@ -1,14 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color= "secondary">
     <ion-title>Log met je account in</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-
-
 
 <ion-content padding>
   <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
@@ -38,7 +35,7 @@
       </ng-container>
     </div>
  
-    <ion-button (click)="signIn()"  [disabled]="!validations_form.valid">Log In</ion-button>
+    <ion-button shape="round" (click)="signIn()"  [disabled]="!validations_form.valid">Log In</ion-button>
  
     <label class="error-message">{{errorMessage}}</label>
   </form>
