@@ -25,7 +25,7 @@
     </ion-item>
   </ion-list>
 
-  <input [(ngModel)]="review" placeholder="Type hier je review">
+  <ion-input [(ngModel)]="review" placeholder="Type hier je review"></ion-input>
   <ion-button (click)="addReview()">Beoordeel recept</ion-button>
   <ngb-rating max="5" [(rate)]="currentRate">
       <ng-template let-fill="fill" let-index="index">
