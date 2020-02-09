@@ -1,23 +1,28 @@
-<ion-header  *ngIf="authenticationService.userData | async">
-  <ion-toolbar color= "secondary" >
-    <ion-buttons slot='start'>
-      <ion-menu-button ></ion-menu-button>
+<ion-header *ngIf="authenticationService.userData | async">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Categorieën</ion-title>
   </ion-toolbar>
-  
 </ion-header>
 
-<ion-content  *ngIf="authenticationService.userData | async" >
-  <ion-card tappable (click)="toMeatRecipes('Vlees')" >
-    <img src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vlees.jpg?alt=media&token=d24855f9-c63c-4543-891f-9b48b0a26152"/>
+<ion-content *ngIf="authenticationService.userData | async">
+  <ion-card tappable (click)="toMeatRecipes('Vlees')">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vlees.jpg?alt=media&token=d24855f9-c63c-4543-891f-9b48b0a26152"
+    />
   </ion-card>
 
-  <ion-card tappable (click)="toFishRecipes('Vis')" >
-    <img src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vis.jpg?alt=media&token=496be3f8-d43b-4367-bada-332b1811db1e"/>
+  <ion-card tappable (click)="toFishRecipes('Vis')">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vis.jpg?alt=media&token=496be3f8-d43b-4367-bada-332b1811db1e"
+    />
   </ion-card>
 
-  <ion-card tappable (click)="toVeganRecipes('Vegetarisch')" >
-    <img src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vegan.jpg?alt=media&token=00e93e9f-bfd4-4d82-98f9-def338ea6cdc"/>
+  <ion-card tappable (click)="toVeganRecipes('Vegetarisch')">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/recipely-inc.appspot.com/o/vegan.jpg?alt=media&token=00e93e9f-bfd4-4d82-98f9-def338ea6cdc"
+    />
   </ion-card>
 </ion-content>

@@ -16,6 +16,7 @@ export class MijnreceptenPage implements OnInit {
   public loadedRecipeList: any[];
   user = this.afAuth.auth.currentUser.email
 
+  //Load my recipes
   ngOnInit() {
     this.firestore.collection(`recipe`, ref => ref.where('user', '==', this.user)).valueChanges()
     .subscribe(recipeList => { 
@@ -23,8 +24,8 @@ export class MijnreceptenPage implements OnInit {
       this.loadedRecipeList = recipeList;
     });
   }
+  // Go to the clicked recipe
   toRecipe(id) {
-    // console.log(id)
     this.router.navigate(["recept"], { state: {receptid: id} } );
   }
 

@@ -46,11 +46,6 @@ export class AppComponent {
         title : "Mijn recepten",
         url   : "/mijnrecepten",
         icon  : "md-list-box"
-      },
-      {
-        title : "Mijn profiel",
-        url   : "/mijnprofiel",
-        icon  : "md-person"
       }
     ]
   }

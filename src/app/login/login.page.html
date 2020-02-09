@@ -1,29 +1,59 @@
 <ion-content class="background-image" no-scroll padding>
-  <ion-img src="../assets/images/Recipely.jpg"></ion-img>
+  <ion-img src="../assets/images/Recipely.png"></ion-img>
   <div *ngIf="authenticationService.userData | async">
-      <h3 class="ion-text-center home-color">Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}</h3>
-      <p class="ion-text-center home-color">Klik hier om weer naar de app toe te gaan!</p>
-      <ion-button color="success" shape="round" (click)="loggedIn()"> Bekijk recepten!</ion-button>
-      <p class="ion-text-center home-color">Is dit niet je account? Klik dan op uitloggen en log vervolgens dan in je eigen account.</p>
-      <ion-button color="danger" shape="round" (click)="signOut()">Loguit</ion-button>
+    <h3 class="ion-text-center home-color">
+      Welkom terug! {{ ' ' + (authenticationService.userData | async)?.email }}
+    </h3>
+    <p class="ion-text-center home-color">
+      Klik hier om weer naar de app toe te gaan!
+    </p>
+    <ion-button color="success" shape="round" (click)="loggedIn()">
+      Bekijk recepten!</ion-button
+    >
+    <p class="ion-text-center home-color">
+      Is dit niet je account? Klik dan op uitloggen en log vervolgens dan in je
+      eigen account.
+    </p>
+    <ion-button color="danger" shape="round" (click)="signOut()"
+      >Loguit</ion-button
+    >
   </div>
 
   <div *ngIf="!(authenticationService.userData | async)">
-  <section>
-     <div class="ion-padding">
-    <hr>
-    <h4 class="ion-text-center home-color">Registreer</h4> 
-      <ion-button shape="round" expand="full" (click)="toRegisterPage()" color="light" >Registreer</ion-button>
-    <hr>
-    <hr>
-    <h4 class="ion-text-center home-color">Meld je aan met Google</h4>
-      <ion-button shape="round" expand="full" (click)="authenticationService.GoogleAuth()" color="danger" (click)="goLoginPage()">Registreer met Google</ion-button>
-    <hr>
-    <hr>
-    <h4 class="ion-text-center bold home-color" >Login</h4>
-      <ion-button shape="round" expand="full" (click)="toLoginPage()" color="success" (click)="goLoginPage()">Login met je account</ion-button>
-    </div>
-    
-  </section>
-</div>
+    <section>
+      <div class="ion-padding">
+        <hr />
+        <h4 class="ion-text-center home-color">Registreer</h4>
+        <ion-button
+          shape="round"
+          expand="full"
+          (click)="toRegisterPage()"
+          color="light"
+          >Registreer</ion-button
+        >
+        <hr />
+        <hr />
+        <h4 class="ion-text-center home-color">Meld je aan met Google</h4>
+        <ion-button
+          shape="round"
+          expand="full"
+          (click)="authenticationService.GoogleAuth()"
+          color="danger"
+          (click)="goLoginPage()"
+          >Registreer met Google</ion-button
+        >
+        <hr />
+        <hr />
+        <h4 class="ion-text-center bold home-color">Login</h4>
+        <ion-button
+          shape="round"
+          expand="full"
+          (click)="toLoginPage()"
+          color="success"
+          (click)="goLoginPage()"
+          >Login met je account</ion-button
+        >
+      </div>
+    </section>
+  </div>
 </ion-content>

@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar color='secondary'>
+  <ion-toolbar color="secondary">
     <ion-title>Beoordelingen</ion-title>
     <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -12,14 +12,14 @@
     <ion-item>
       <ion-label>
         <p>Review door: {{ item.user }}</p>
-          <p>
-            <ngb-rating max="5" readonly="true" rate="{{item.rating}}">
+        <p>
+          <ngb-rating max="5" readonly="true" rate="{{item.rating}}">
             <ng-template let-fill="fill" let-index="index">
               <span class="star" [class.filled]="fill === 100">&#9733;</span>
             </ng-template>
-        </ngb-rating>
-      </p>
-          
+          </ngb-rating>
+        </p>
+
         <h5>{{item.review}}</h5>
       </ion-label>
     </ion-item>
@@ -28,9 +28,8 @@
   <ion-input [(ngModel)]="review" placeholder="Type hier je review"></ion-input>
   <ion-button (click)="addReview()">Beoordeel recept</ion-button>
   <ngb-rating max="5" [(rate)]="currentRate">
-      <ng-template let-fill="fill" let-index="index">
-        <span class="star" [class.filled]="fill === 100">&#9733;</span>
-      </ng-template>
-    </ngb-rating> 
-
+    <ng-template let-fill="fill" let-index="index">
+      <span class="star" [class.filled]="fill === 100">&#9733;</span>
+    </ng-template>
+  </ngb-rating>
 </ion-content>

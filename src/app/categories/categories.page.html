@@ -1,24 +1,25 @@
 <ion-header>
-  <ion-toolbar color= "secondary">
+  <ion-toolbar color="secondary">
     <ion-title>{{this.category}} gerechten</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      </ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar showcancelbutton="" (keyup)="filterList($event)"></ion-searchbar>
+  <ion-searchbar
+    showcancelbutton=""
+    (keyup)="filterList($event)"
+  ></ion-searchbar>
   <div *ngFor="let item of recipeList">
-    <ion-card tappable (click)="toRecipe(item.id, item.name)" >
-      <img src="{{ item.image }}"/>
+    <ion-card tappable (click)="toRecipe(item.id, item.name)">
+      <img src="{{ item.image }}" />
       <ion-card-header>
         <ion-card-subtitle>Bevat {{ item.ingredient }}</ion-card-subtitle>
-        <ion-card-title>{{item.name}}</ion-card-title>  
+        <ion-card-title>{{item.name}}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-      </ion-card-content>
+      <ion-card-content> </ion-card-content>
     </ion-card>
   </div>
-
 </ion-content>

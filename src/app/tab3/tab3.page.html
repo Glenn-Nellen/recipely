@@ -1,229 +1,304 @@
-<ion-header  *ngIf="authenticationService.userData | async">
-  <ion-toolbar color='secondary'>
+<ion-header *ngIf="authenticationService.userData | async">
+  <ion-toolbar color="secondary">
     <ion-title>Voeg een recept toe</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      </ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
- 
-<ion-content padding  *ngIf="authenticationService.userData | async">
+<ion-content padding *ngIf="authenticationService.userData | async">
   <form class="form" [formGroup]="validations_form">
-
     <div *ngIf="stap1">
       <div class="ion-padding">
         <div class="ion-text-center">
           <h1>Stap 1</h1>
         </div>
-      
-        </div>
-        <div class="ion-text-left">
-          <h4>Geef het recept een naam</h4>
-        </div>
-        <ion-item>
-          <ion-input formControlName="naam" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
-            inputmode="text" placeholder="Voer een naam in" required="true"></ion-input>
-          <ion-icon name="md-create" slot="end"></ion-icon>
-        </ion-item>
-        <div class="validation-errors">
-          <ng-container *ngFor="let validation of validation_messages.naam">
-            <div class="error-message" *ngIf="validations_form.get('naam').hasError(validation.type) && (validations_form.get('naam').dirty || validations_form.get('naam').touched)">
-              {{ validation.message }}
-            </div>
-          </ng-container>
-        </div>
-    
-        <div class="ion-text-left">
-          <h4>Selecteer de ingrediënten die nodig zijn voor het recept</h4>
-        </div>
-        <ion-item>
-          <ion-label>ingrediënten</ion-label>
-          <ion-select [(ngModel)]="ingredient" multiple="true" cancelText="Cancel" okText="Select" [ngModelOptions]="{standalone: true}">
-            <ion-select-option value="bacon">Bacon</ion-select-option>
-            <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
-            <ion-select-option value="Aardappelpuree">Aardappelpuree</ion-select-option>
-            <ion-select-option value="Olijven">Olijven</ion-select-option>
-            <ion-select-option value="Knoflook">Knoflook</ion-select-option>
-            <ion-select-option value="Rookworst">Rookworst</ion-select-option>
-            <ion-select-option value="Prei">Prei</ion-select-option>
-            <ion-select-option value="Citroen">Citroen</ion-select-option>
-            <ion-select-option value="Coleslaw">Coleslaw</ion-select-option>
-            <ion-select-option value="Kaas">Kaas</ion-select-option>
-            <ion-select-option value="Paprika">Paprika</ion-select-option>
-            <ion-select-option value="Uien">Uien</ion-select-option>
-            <ion-select-option value="Pepperoni">Pepperoni</ion-select-option>
-            <ion-select-option value="Annanas">Annanas</ion-select-option>
-            <ion-select-option value="Worst">Worst</ion-select-option>
-            <ion-select-option value="Spinazie">Spinazie</ion-select-option>
-            <ion-select-option value="Wraps">Wraps</ion-select-option>
-            <ion-select-option value="Bruine bol">Bruine bol</ion-select-option>
-            <ion-select-option value="Witte bol">Witte bol</ion-select-option>
-            <ion-select-option value="Pasta">Pasta</ion-select-option>
-            <ion-select-option value="Tomaat">Tomaat</ion-select-option>
-            <ion-select-option value="Tuinkers">Tuinkers</ion-select-option>
-            <ion-select-option value="Olijfolie">Olijfolie</ion-select-option>
-            <ion-select-option value="Zonnebloemolie">Zonnebloemolie</ion-select-option>
-            <ion-select-option value="Pijnboompitten">Pijnboompitten</ion-select-option>
-            <ion-select-option value="Mosterd">Mosterd</ion-select-option>
-            <ion-select-option value="Kipragout">Kipragout</ion-select-option>
-            <ion-select-option value="Kip">Kip</ion-select-option>
-            <ion-select-option value="Bloemkool">BloemKool</ion-select-option>
-            <ion-select-option value="Zalm">Zalm</ion-select-option>
-            <ion-select-option value="Kokosmelk">Kokosmelk</ion-select-option>
-            <ion-select-option value="Garnalen">Garnalen</ion-select-option>
-            <ion-select-option value="visbouillontablet">visbouillontablet</ion-select-option>
-            <ion-select-option value="Witte rijst">Witte rijst</ion-select-option>
-            <ion-select-option value="Gele rijst ">Gele rijst</ion-select-option>
-            
-          </ion-select>
-        </ion-item>
-    
-        <div class="ion-text-left">
-          <h4>Selecteer een categorie</h4>
-        </div>
-    
-        <ion-item>
-          <ion-label>Categorie</ion-label>
-          <ion-select placeholder="Selecteer een categorie" formControlName="categorie">
-            <ion-select-option value="Vlees">Vlees</ion-select-option>
-            <ion-select-option value="Vis">Vis</ion-select-option>
-            <ion-select-option value="Vegetarisch">Vegetarisch</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-button (click)="Stap2()" class="primary">Volgende stap</ion-button>
-        </ion-item>
-    </div>
-  
-
-<div *ngIf="stap2">
-  <div class="ion-text-center">
-    <h1>Stap 2</h1>
-  </div>  
-
-  <div class="ion-text-left">
-    <h4>Voor wanneer is het gerecht?</h4>
-  </div>
-
-  <ion-item>
-    <ion-label>Wanneer</ion-label>
-    <ion-select formControlName="mealTime" multiple="true" cancelText="Cancel" okText="Select">
-      <ion-select-option value="Ochtend">Ochtend</ion-select-option>
-      <ion-select-option value="Middag">Middag</ion-select-option>
-      <ion-select-option value="Avond">Avond</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <div class="ion-text-left">
-    <h4>Voor hoeveel personen is het gerecht?</h4>
-  </div>
-
-  <ion-item>
-    <ion-input formControlName="people" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
-      inputmode="text" placeholder="Voer aantal personen in" required="true"></ion-input>
-    <ion-icon name="md-contacts" slot="end"></ion-icon>
-  </ion-item>
-  <div class="validation-errors">
-    <ng-container *ngFor="let validation of validation_messages.people">
-      <div class="error-message" *ngIf="validations_form.get('people').hasError(validation.type) && (validations_form.get('people').dirty || validations_form.get('people').touched)">
-        {{ validation.message }}
       </div>
-    </ng-container>
-  </div>
-
-  <div class="ion-text-left">
-    <h4>Hoelang duurt het bereiden van het gerecht?</h4>
-  </div>
-
-  <ion-item>
-    <ion-input formControlName="prepTime" autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
-      inputmode="text" placeholder="Voer een tijd in minuten in" required="true"></ion-input>
-    <ion-icon name="md-contacts" slot="end"></ion-icon>
-  </ion-item>
-  <div class="validation-errors">
-    <ng-container *ngFor="let validation of validation_messages.prepTime">
-      <div class="error-message" *ngIf="validations_form.get('prepTime').hasError(validation.type) && (validations_form.get('prepTime').dirty || validations_form.get('prepTime').touched)">
-        {{ validation.message }}
+      <div class="ion-text-left">
+        <h4>Geef het recept een naam</h4>
       </div>
-    </ng-container>
-  </div>
-  <ion-item>
-    <ion-button (click)="back1()" class="primary">Vorige stap</ion-button>
-    <ion-button (click)="Stap3()" class="primary">Volgende stap</ion-button>
-  </ion-item>
-</div>
-
-<div *ngIf="stap3">
-  <div class="ion-text-center">
-    <h1>Stap 3</h1>
-  </div>
-
-  <ion-list lines="none">
-  <form>
-  <ion-item class="container border mb-4 p-3" *ngFor="let step of steps; let i = index;">
-    <div class="row">
-      <div>
-        <h5>{{i + 1}}</h5>
-      </div>
-      <div class="text-right">
-      </div>
-    </div>
-    <div class="form-group">
       <ion-item>
-      <ion-input required type="text" [(ngModel)]="step.step" name="step_{{i}}" placeholder="Beschrijf stap {{i + 1}}"></ion-input>
-      <ion-icon (click)="removeSteps(i)" name="close-circle"></ion-icon>
-    </ion-item>
+        <ion-input
+          formControlName="naam"
+          autocorrect="on"
+          autofocus="on"
+          clearInput="true"
+          clearOnEdit="true"
+          inputmode="text"
+          placeholder="Voer een naam in"
+          required="true"
+        ></ion-input>
+        <ion-icon name="md-create" slot="end"></ion-icon>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.naam">
+          <div
+            class="error-message"
+            *ngIf="validations_form.get('naam').hasError(validation.type) && (validations_form.get('naam').dirty || validations_form.get('naam').touched)"
+          >
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="ion-text-left">
+        <h4>Selecteer de ingrediënten die nodig zijn voor het recept</h4>
+      </div>
+      <ion-item>
+        <ion-label>ingrediënten</ion-label>
+        <ion-select
+          [(ngModel)]="ingredient"
+          multiple="true"
+          cancelText="Cancel"
+          okText="Select"
+          [ngModelOptions]="{standalone: true}"
+        >
+          <ion-select-option value="bacon">Bacon</ion-select-option>
+          <ion-select-option value="Spaghetti">Spaghetti</ion-select-option>
+          <ion-select-option value="Aardappelpuree"
+            >Aardappelpuree</ion-select-option
+          >
+          <ion-select-option value="Olijven">Olijven</ion-select-option>
+          <ion-select-option value="Knoflook">Knoflook</ion-select-option>
+          <ion-select-option value="Rookworst">Rookworst</ion-select-option>
+          <ion-select-option value="Prei">Prei</ion-select-option>
+          <ion-select-option value="Citroen">Citroen</ion-select-option>
+          <ion-select-option value="Coleslaw">Coleslaw</ion-select-option>
+          <ion-select-option value="Kaas">Kaas</ion-select-option>
+          <ion-select-option value="Paprika">Paprika</ion-select-option>
+          <ion-select-option value="Uien">Uien</ion-select-option>
+          <ion-select-option value="Pepperoni">Pepperoni</ion-select-option>
+          <ion-select-option value="Annanas">Annanas</ion-select-option>
+          <ion-select-option value="Worst">Worst</ion-select-option>
+          <ion-select-option value="Spinazie">Spinazie</ion-select-option>
+          <ion-select-option value="Wraps">Wraps</ion-select-option>
+          <ion-select-option value="Bruine bol">Bruine bol</ion-select-option>
+          <ion-select-option value="Witte bol">Witte bol</ion-select-option>
+          <ion-select-option value="Pasta">Pasta</ion-select-option>
+          <ion-select-option value="Tomaat">Tomaat</ion-select-option>
+          <ion-select-option value="Tuinkers">Tuinkers</ion-select-option>
+          <ion-select-option value="Olijfolie">Olijfolie</ion-select-option>
+          <ion-select-option value="Zonnebloemolie"
+            >Zonnebloemolie</ion-select-option
+          >
+          <ion-select-option value="Pijnboompitten"
+            >Pijnboompitten</ion-select-option
+          >
+          <ion-select-option value="Mosterd">Mosterd</ion-select-option>
+          <ion-select-option value="Kipragout">Kipragout</ion-select-option>
+          <ion-select-option value="Kip">Kip</ion-select-option>
+          <ion-select-option value="Bloemkool">BloemKool</ion-select-option>
+          <ion-select-option value="Zalm">Zalm</ion-select-option>
+          <ion-select-option value="Kokosmelk">Kokosmelk</ion-select-option>
+          <ion-select-option value="Garnalen">Garnalen</ion-select-option>
+          <ion-select-option value="visbouillontablet"
+            >visbouillontablet</ion-select-option
+          >
+          <ion-select-option value="Witte rijst">Witte rijst</ion-select-option>
+          <ion-select-option value="Gele rijst ">Gele rijst</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div class="ion-text-left">
+        <h4>Selecteer een categorie</h4>
+      </div>
+
+      <ion-item>
+        <ion-label>Categorie</ion-label>
+        <ion-select
+          placeholder="Selecteer een categorie"
+          formControlName="categorie"
+        >
+          <ion-select-option value="Vlees">Vlees</ion-select-option>
+          <ion-select-option value="Vis">Vis</ion-select-option>
+          <ion-select-option value="Vegetarisch">Vegetarisch</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="Stap2()" class="primary">Volgende stap</ion-button>
+      </ion-item>
     </div>
-    <div class="text-right">
-  </div>
-  </ion-item>
-</form>
-</ion-list>
 
-<ion-button expand="full" color="light" (click)="addSteps()">Voeg een stap toe</ion-button>
-<ion-item>
-  <ion-button (click)="back2()" class="primary">Vorige stap</ion-button>
-  <ion-button (click)="Stap4()" class="primary">Volgende stap</ion-button>
-</ion-item>
-</div>
-<div *ngIf="stap4">
-  <div class="ion-text-center">
-    <h1>Stap 4</h1>
-  </div>
+    <div *ngIf="stap2">
+      <div class="ion-text-center">
+        <h1>Stap 2</h1>
+      </div>
 
-  <div class="ion-text-left">
-    <h4>Voeg een foto toe</h4>
-  </div>
+      <div class="ion-text-left">
+        <h4>Voor wanneer is het gerecht?</h4>
+      </div>
 
-  <div class="uploadbtn">
-    <label>
-      <input (change)="saveEvent($event)" type="file" class="image-upload" accept="image/*">
-    </label>
-  </div>
+      <ion-item>
+        <ion-label>Wanneer</ion-label>
+        <ion-select
+          formControlName="mealTime"
+          multiple="true"
+          cancelText="Cancel"
+          okText="Select"
+        >
+          <ion-select-option value="Ochtend">Ochtend</ion-select-option>
+          <ion-select-option value="Middag">Middag</ion-select-option>
+          <ion-select-option value="Avond">Avond</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-  <div class="ion-text-left">
-    <h4>Voeg een video toe</h4>
-  </div>
+      <div class="ion-text-left">
+        <h4>Voor hoeveel personen is het gerecht?</h4>
+      </div>
 
-  <ion-item>
-    <ion-input formControlName="video"  autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true"
-      inputmode="text" placeholder="Voeg een link toe" required="false"></ion-input>
-    <ion-icon name="md-link" slot="end"></ion-icon>
-  </ion-item>
-  <ion-item>
-    <ion-button (click)="back3()" class="primary">Vorige stap</ion-button>
-  </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="people"
+          autocorrect="on"
+          autofocus="on"
+          clearInput="true"
+          clearOnEdit="true"
+          inputmode="text"
+          placeholder="Voer aantal personen in"
+          required="true"
+        ></ion-input>
+        <ion-icon name="md-contacts" slot="end"></ion-icon>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.people">
+          <div
+            class="error-message"
+            *ngIf="validations_form.get('people').hasError(validation.type) && (validations_form.get('people').dirty || validations_form.get('people').touched)"
+          >
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
 
-  <ion-button (click)="uploadAlert()" expand="block" class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Voeg het recept toe</ion-button>
-  <label class="error-message">{{errorMessage}}</label>
-</div>
-   
+      <div class="ion-text-left">
+        <h4>Hoelang duurt het bereiden van het gerecht?</h4>
+      </div>
+
+      <ion-item>
+        <ion-input
+          formControlName="prepTime"
+          autocorrect="on"
+          autofocus="on"
+          clearInput="true"
+          clearOnEdit="true"
+          inputmode="text"
+          placeholder="Voer een tijd in minuten in"
+          required="true"
+        ></ion-input>
+        <ion-icon name="md-contacts" slot="end"></ion-icon>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.prepTime">
+          <div
+            class="error-message"
+            *ngIf="validations_form.get('prepTime').hasError(validation.type) && (validations_form.get('prepTime').dirty || validations_form.get('prepTime').touched)"
+          >
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-button (click)="back1()" class="primary">Vorige stap</ion-button>
+        <ion-button (click)="Stap3()" class="primary">Volgende stap</ion-button>
+      </ion-item>
+    </div>
+
+    <div *ngIf="stap3">
+      <div class="ion-text-center">
+        <h1>Stap 3</h1>
+      </div>
+
+      <ion-list lines="none">
+        <form>
+          <ion-item
+            class="container border mb-4 p-3"
+            *ngFor="let step of steps; let i = index;"
+          >
+            <div class="row">
+              <div>
+                <h5>{{i + 1}}</h5>
+              </div>
+              <div class="text-right"></div>
+            </div>
+            <div class="form-group">
+              <ion-item>
+                <ion-input
+                  required
+                  type="text"
+                  [(ngModel)]="step.step"
+                  name="step_{{i}}"
+                  placeholder="Beschrijf stap {{i + 1}}"
+                ></ion-input>
+                <ion-icon
+                  (click)="removeSteps(i)"
+                  name="close-circle"
+                ></ion-icon>
+              </ion-item>
+            </div>
+            <div class="text-right"></div>
+          </ion-item>
+        </form>
+      </ion-list>
+
+      <ion-button expand="full" color="light" (click)="addSteps()"
+        >Voeg een stap toe</ion-button
+      >
+      <ion-item>
+        <ion-button (click)="back2()" class="primary">Vorige stap</ion-button>
+        <ion-button (click)="Stap4()" class="primary">Volgende stap</ion-button>
+      </ion-item>
+    </div>
+    <div *ngIf="stap4">
+      <div class="ion-text-center">
+        <h1>Stap 4</h1>
+      </div>
+
+      <div class="ion-text-left">
+        <h4>Voeg een foto toe</h4>
+      </div>
+
+      <div class="uploadbtn">
+        <label>
+          <input
+            (change)="saveEvent($event)"
+            type="file"
+            class="image-upload"
+            accept="image/*"
+          />
+        </label>
+      </div>
+
+      <div class="ion-text-left">
+        <h4>Voeg een video toe</h4>
+      </div>
+
+      <ion-item>
+        <ion-input
+          formControlName="video"
+          autocorrect="on"
+          autofocus="on"
+          clearInput="true"
+          clearOnEdit="true"
+          inputmode="text"
+          placeholder="Voeg een link toe"
+          required="false"
+        ></ion-input>
+        <ion-icon name="md-link" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="back3()" class="primary">Vorige stap</ion-button>
+      </ion-item>
+
+      <ion-button
+        (click)="uploadAlert()"
+        expand="block"
+        class="submit-btn"
+        type="submit"
+        [disabled]="!validations_form.valid"
+        >Voeg het recept toe</ion-button
+      >
+      <label class="error-message">{{errorMessage}}</label>
+    </div>
   </form>
-
-  
-  
 </ion-content>
-
-
-
